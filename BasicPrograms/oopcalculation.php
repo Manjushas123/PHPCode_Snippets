@@ -5,7 +5,6 @@ class Car
 }
 class Car
 {
-    
     public $tank;
     
     // Add gallons of fuel to the tank when we fill it.
