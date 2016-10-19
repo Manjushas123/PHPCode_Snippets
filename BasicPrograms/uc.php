@@ -1,4 +1,4 @@
-?php
+<?php
 $task = [
     'title'=>'finish homework',
     'due'=>'today',
