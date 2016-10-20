@@ -1,5 +1,4 @@
  <?php
-
 class Car
 {
     private $model;
@@ -26,5 +25,4 @@ class Car
 $mercedes = new Car();
 $mercedes->setModel("Mercedes benz");
 echo $mercedes->getModel();
-
 ?> 
