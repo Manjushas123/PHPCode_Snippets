@@ -14,7 +14,7 @@ switch($name)
 	case "sunder":
 	echo "you are blessed with good daughters";
 	break;
-default :
-echo "you are not the member of the family";
+        default :
+        echo "you are not the member of the family";
 }
 ?>
