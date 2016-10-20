@@ -10,11 +10,11 @@ class Car
         return "Beep I am a <i>" . $this->comp . "</i>, and I am <i>" . $this->color;
     }
 }
-$bmw             = new Car();
-$mercedes        = new Car();
-$bmw->color      = 'blue';
-$bmw->comp       = "BMW";
-$mercedes->comp  = "Mercedes Benz";
+$bmw = new Car();
+$mercedes = new Car();
+$bmw->color = 'blue';
+$bmw->comp = "BMW";
+$mercedes->comp = "Mercedes Benz";
 $mercedes->color = 'yellow';
 echo $mercedes->hello();
 ?> 
