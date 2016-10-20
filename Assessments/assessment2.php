@@ -25,7 +25,6 @@ if (isset($errorMSG)) {
 </head>
 <body bgcolor=pink>
 
-
 <?php
 if (isset($errorMSG)) {
 ?>
