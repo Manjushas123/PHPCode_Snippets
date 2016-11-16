@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>JavaScript Can Validate Input</h1>
+<p>Please input a number between 1 and 10:</p>
+<input type= "text" id="maximnumber">
+<input type= "text" id="minnumber">
+<button type="button" onclick="myFunction()" value="myFunction">Submit</button>
+<input type ="text" id="average">
+<p id="demo"></p>
+<script>
+function myFunction() 
+{
+    var  x = parseInt(document.getElementById("maximnumber").value);
+    var y = parseInt(document.getElementById("minnumber").value);
+    var avg = ((x + y)  / 2);
+    document.getElementById('average').value = avg;
+}
+</script>
+</body>
+</html> 
