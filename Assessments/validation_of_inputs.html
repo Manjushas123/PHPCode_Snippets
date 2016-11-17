@@ -1,0 +1,103 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Validation using JavaScript</title>
+    <script type="text/javascript">
+        function checkName(form) 
+        {
+            var nameError = document.getElementById('realnameerror');
+            var realNameValue = form.realname.value;
+            var error = false;
+            nameError.innerHTML = '';
+            if (realNameValue == '') {
+                error = 'Error: Username cannot be blank!';
+            } else if (!isNaN(RealNameValue)) {
+                error = "Incorrect format.";
+            }
+
+            if (error) {
+                form.realname.focus();
+                nameError.innerHTML = error;
+                return false;
+            }
+            return true;
+        }
+
+        function checkEmail(form) 
+        {
+            var emailError = document.getElementById('emailerror');
+            emailError.innerHTML = '';
+            var error = false;
+            if (form.email.value.length == 0) {
+                error = 'Please enter email.';
+            } else if (/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/.test(form.email.value)) {
+                return true;
+            } else {
+                error = 'Invalid E-mail Address! Please re-enter.';
+            }
+            if (error) {
+                emailError.innerHTML = error;
+                return false;
+            }
+
+            return true;
+        }
+
+        function validPhone(form) 
+        {
+            var phoneError = document.getElementById('phonenoerror');
+            //var valid = '0123456789';
+            var phone = form.phoneno.value;
+            var error = false;
+            var i = 0;
+            var temp;
+            phoneError.innerHTML = '';
+            if (phone == '') {
+                error = 'This field is required. Please enter phone number';
+            } else if (isNaN(phone)) {
+                error = 'Please Enter only numbers..!';
+            }
+
+            if (error) {
+                phoneError.innerHTML = error;
+                return false;
+            }
+            return true;
+
+        }
+
+        function validate() 
+        {
+            var form = document.forms['form'];
+            var ary = [checkName, checkEmail, validPhone];
+            var rtn = true;
+            var z0 = 0;
+            for (var z0 = 0; z0 < ary.length; z0++) {
+                if (!ary[z0](form)) {
+                    rtn = false;
+                }
+            }
+
+            if (rtn == true) {
+                alert("success");
+            } else {
+                return rtn;
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+    <h1> Validation Using Javascript </h1>
+    <form action="" method="post" name="form" onsubmit="return validate()">
+        User Name : <input type="text" name="realname" size="19"><span id="realnameerror"></span>
+        <br> E-Mail : <input type="text" name="email" size="25"><span id="emailerror"></span>
+        <br> PhoneNo : <input type="phoneno" name="phoneno" maxlength="10" size="25"><span id="phonenoerror"></span>
+        <br>
+        <p align="center"><input type="submit" value="Submit"></p>
+    </form>
+</body>
+
+</html>
