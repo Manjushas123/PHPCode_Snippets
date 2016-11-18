@@ -12,7 +12,7 @@
             nameError.innerHTML = '';
             if (realNameValue == '') {
                 error = 'Error: Username cannot be blank!';
-            } else if (!isNaN(RealNameValue)) {
+            } else if (!isNaN(realNameValue)) {
                 error = "Incorrect format.";
             }
 
@@ -70,20 +70,19 @@
         function validate() 
         {
             var form = document.forms['form'];
-            var ary = [checkName, checkEmail, validPhone];
-            var rtn = true;
-            var z0 = 0;
-            for (var z0 = 0; z0 < ary.length; z0++) {
-                if (!ary[z0](form)) {
-                    rtn = false;
+            //var ary = [checkName, checkEmail, validPhone];
+            var value = true;
+            //var z0 = 0;
+            //for (var z0 = 0; z0 < ary.length; z0++) {
+                if (!check_name(form) || !check_email(form) || !valid_phone()) {
+                    return false;
                 }
-            }
 
-            if (rtn == true) {
+            if (value == true) {
                 alert("success");
-            } else {
-                return rtn;
-            }
+            } 
+               
+            
         }
     </script>
 </head>
