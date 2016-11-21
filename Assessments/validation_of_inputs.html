@@ -6,7 +6,7 @@
     <script type="text/javascript">
         function checkName(form) 
         {
-            var nameError = document.getElementById('realnameerror');
+            var nameError = document.getElementById('realNameError');
             var realNameValue = form.realname.value;
             var error = false;
             nameError.innerHTML = '';
@@ -26,7 +26,7 @@
 
         function checkEmail(form) 
         {
-            var emailError = document.getElementById('emailerror');
+            var emailError = document.getElementById('emailError');
             emailError.innerHTML = '';
             var error = false;
             if (form.email.value.length == 0) {
@@ -46,7 +46,7 @@
 
         function validPhone(form) 
         {
-            var phoneError = document.getElementById('phonenoerror');
+            var phoneError = document.getElementById('phoneNoError');
             //var valid = '0123456789';
             var phone = form.phoneno.value;
             var error = false;
@@ -103,9 +103,9 @@
 
     <h1> Validation Using Javascript </h1>
     <form action="" method="post" name="form" onsubmit="return validate()">
-        User Name : <input type="text" name="realname" size="19"><span id="realnameerror"></span>
-        <br> E-Mail : <input type="text" name="email" size="25"><span id="emailerror"></span>
-        <br> PhoneNo : <input type="phoneno" name="phoneno" maxlength="10" size="25"><span id="phonenoerror"></span>
+        User Name : <input type="text" name="realname" size="19"><span id="realNamError"></span>
+        <br> E-Mail : <input type="text" name="email" size="25"><span id="emailError"></span>
+        <br> PhoneNo : <input type="phoneno" name="phoneno" maxlength="10" size="25"><span id="phoneNoError"></span>
         <br>
         <p align="center"><input type="submit" value="Submit"></p>
     </form>
