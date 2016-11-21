@@ -71,19 +71,31 @@
         {
             var form = document.forms['form'];
             //var ary = [checkName, checkEmail, validPhone];
-            var value = true;
+           // var value = true;
+            var check_name = checkName;
+            var check_email = checkEmail;
+            var valid_phone = validPhone;
             //var z0 = 0;
             //for (var z0 = 0; z0 < ary.length; z0++) {
-                if (!check_name(form) || !check_email(form) || !valid_phone()) {
-                    return false;
-                }
+            if (!check_name(form)) {
+                return false;
+            } else if (!check_email(form)) {
+                return false;
+            } else if (!valid_phone(form)) {
 
-            if (value == true) {
+                //f(!valid_phone(form)) {
+                //eturn error;
+                return false;
+            }
+            //}}
+
+            // if (rtn == true) 
+            else {
                 alert("success");
-            } 
-               
-            
-        }
+                return true;
+            } //else {
+            // return rtn;
+        }    
     </script>
 </head>
 
