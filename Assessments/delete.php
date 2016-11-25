@@ -1,20 +1,18 @@
 <?php
-require 'database.php';
-$servername = "localhost";
-$username   = "root";
-$password   = "compass";
-$dbname     = "mytodo";
-
-// Create connection
-$conn = mysqli_connect($servername, $username, $password, $dbname);
-// Check connection
-if (!$conn) {
-    
-    die("Connection failed: " . mysqli_connect_error());
+require 'dbconfig.php';
+$id = $_GET['id'];
+echo "hii";
+$delete_query = "DELETE FROM employee_detail WHERE id='$id'";
+$result       = $conn->query($delete_query);
+if ($result) {
+    echo "Record Deleted Successfully";
+?>    
+<br>
+<a href='view1.php'> Back to main page </a>
+<?php
+} else {
+    echo "ERROR!" . mysqli_error($conn);
 }
-if (isset($_GET['delete_id'])) {
-    $sql_query = "DELETE FROM employee_details WHERE user_id=" . $_GET['delete_id'];
-    mysql_query($sql_query);
-    header("Location: $_SERVER[PHP_SELF]");
-}
+mysqli_close($conn);
 ?>
+
