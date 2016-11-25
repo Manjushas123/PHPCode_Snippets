@@ -21,7 +21,7 @@ if (isset($_POST['insert'])) { //echo 'inside';
     $grosssalary = $_POST['gross_salary'];
     $deduction   = $_POST['deduction'];
     $lop         = $_POST['lop'];
-    $netsalary   = $_POST['netsal'];
+    $netsalary   = $_POST['gross_salary']-((($_POST['gross_salary']/30) *$_POST['lop'])+$_POST['deduction']);
     
     $sql1 = "INSERT INTO employee_details(empName,empId,designation,gender,experience,gross_salary,deduction,lop,netsal) VALUES('$empname',$empid,'$designation','$gender',$experience,$grosssalary,$deduction,$lop ,$netsalary )";
     if (mysqli_query($conn, $sql1)) {
