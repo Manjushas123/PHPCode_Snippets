@@ -12,7 +12,7 @@ if (isset($_POST['update'])) {
     $lop         = $_POST['lop'];
     $netsalary   = $_POST['gross_salary']-((($_POST['gross_salary']/30) *$_POST['lop'])+$_POST['deduction']);
     
-    $result = "UPDATE employee_detail SET empName ='$empname', empId=$empid,designation='$designation',gender='$gender',experience=$experience,gross_salary=$grosssalary,deduction=$deduction,lop=$lop,netsal=$netsalary WHERE id=$id";
+    $result = "UPDATE employee_detail SET empName ='$empname', empId = $empid,designation = '$designation',gender = '$gender',experience = $experience,gross_salary = $grosssalary,deduction = $deduction,lop = $lop,netsal = $netsalary WHERE id = $id";
     $result_query     = $conn->query($result);
     if ($result_query) {
         echo "<i>";
@@ -23,7 +23,7 @@ if (isset($_POST['update'])) {
     }
 }
 ?>
-<p color = "blue"><b><a href = "view.php"> Go to the View Page</a></b></p>
+<p align = "center"><b><a href = "view.php"> Go to the View Page</a></b></p>
 <?php
 $result = mysqli_query($conn, "SELECT * FROM employee_detail WHERE id=$id");
 $res         = mysqli_fetch_array($result);
@@ -41,7 +41,7 @@ $netsalary   = $res['netsal'];
 <head>
 <title> Employee Details </title>
 </head>
-<body bgcolor = #CCFFFF>
+<body background ="images.jpeg">
 <form method = "post" action= "">
 <table>
 <h1 align = "center"> Employee Update operation</h1>
@@ -71,7 +71,7 @@ echo $lop;
   <tr> <th> Net Salary </th> <td><input id ="number" name ="netsal" value="<?php
 echo $netsalary;
 ?>" /></td></tr>
-<tr> <td><p align= "center"><input type="submit" name="update" value="update" /></p></td></tr> 
+<tr> <td><p align= "center"><input type="submit" name="update" value="Update" /></p></td></tr> 
   </table>
   </form>
   <p align="center"></p>
