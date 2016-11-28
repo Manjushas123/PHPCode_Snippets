@@ -1,8 +1,13 @@
 <?php
-$host = "localhost";
-$user = "root";
-$password = "compass";
-$datbase = "mytodo";
-mysql_connect($host,$user,$password);
-mysql_select_db($datbase);
+global $conn;
+$servername = "localhost";
+$username   = "root";
+$password   = "compass";
+$dbname     = "mytodo";
+// Create connection
+$conn = mysqli_connect($servername, $username, $password, $dbname);
+// Check connection
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
 ?>
