@@ -1,18 +1,6 @@
 <?php
-$servername = "localhost";
-$username   = "root";
-$password   = "compass";
-$dbname     = "mytodo";
-
-// Create connection
-$conn = mysqli_connect($servername, $username, $password, $dbname);
-// Check connection
-if (!$conn) {
-    
-    die("Connection failed: " . mysqli_connect_error());
-}
-
-if (isset($_POST['insert'])) { //echo 'inside';
+require "dbconfig.php";
+if (isset($_POST['insert'])) { 
     $empname     = $_POST['empName'];
     $empid       = $_POST['empId'];
     $designation = $_POST['designation'];
@@ -21,24 +9,20 @@ if (isset($_POST['insert'])) { //echo 'inside';
     $grosssalary = $_POST['gross_salary'];
     $deduction   = $_POST['deduction'];
     $lop         = $_POST['lop'];
-    $netsalary   = $_POST['gross_salary']-((($_POST['gross_salary']/30) *$_POST['lop'])+$_POST['deduction']);
+    $netsalary   =  $_POST['gross_salary']-((($_POST['gross_salary']/30) *$_POST['lop'])+$_POST['deduction']);
     
-    $sql1 = "INSERT INTO employee_details(empName,empId,designation,gender,experience,gross_salary,deduction,lop,netsal) VALUES('$empname',$empid,'$designation','$gender',$experience,$grosssalary,$deduction,$lop ,$netsalary )";
+    $sql1 = "INSERT INTO employee_detail(empName,empId,designation,gender,experience,gross_salary,deduction,lop,netsal) VALUES('$empname',$empid,'$designation','$gender',$experience,$grosssalary,$deduction,$lop ,$netsalary )";
     if (mysqli_query($conn, $sql1)) {
-        //echo "records inserted successfully";
         header('Location: view.php');
     } else {
         echo "Error in inserting: " . mysqli_error($conn);
     }
 }
-
 ?>
 <html>
 <head>
 <title> Employee Details </title>
-</head<td><?php
-echo $row[1];
-?></td></head>
+</head>
 <body bgcolor = "pink">
 <form method = "post" action= "">
 <table>
@@ -53,10 +37,8 @@ echo $row[1];
   <tr> <th> Deduction </th> <td><input id ="number" name ="deduction" required /></td></tr>
   <tr> <th> LOP </th> <td><input id ="number" name ="lop" required/></td></tr>
   <tr> <th> Net Salary </th> <td><input id ="number" name ="netsal"/></td></tr>
-<tr> <td><input type="submit" name="insert" value="insert" /></td></tr>
-  
+<tr> <td><p align ="center"><input type="submit" name="insert" value="insert" /></td></tr></p>
   </table>
   </form>
-  <p align="center"></p>
   </body>
   </html>
