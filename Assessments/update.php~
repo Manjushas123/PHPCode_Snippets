@@ -2,16 +2,17 @@
 require "dbconfig.php";
 $id = $_GET['id'];
 if (isset($_POST['update'])) {
-    $empName     = $_POST['empName'];
-    $empId       = $_POST['empId'];
+    $empname     = $_POST['empName'];
+    $empid       = $_POST['empId'];
     $designation = $_POST['designation'];
     $gender      = $_POST['gender'];
     $experience  = $_POST['experience'];
-    $grossSalary = $_POST['gross_salary'];
+    $grosssalary = $_POST['gross_salary'];
     $deduction   = $_POST['deduction'];
     $lop         = $_POST['lop'];
-    $netSalary   = $grossSalary - ((($grossSalary / 30) * $lop) + $deduction);
-    $result = "UPDATE employee_detail SET empName ='$empName', empId = $empId,designation = '$designation',gender = '$gender',experience = $experience,gross_salary = $grossSalary,deduction = $deduction,lop = $lop,netsal = $netSalary WHERE id = $id";
+    $netsalary   = $_POST['gross_salary']-((($_POST['gross_salary']/30) *$_POST['lop'])+$_POST['deduction']);
+    
+    $result = "UPDATE employee_detail SET empName ='$empname', empId = $empid,designation = '$designation',gender = '$gender',experience = $experience,gross_salary = $grosssalary,deduction = $deduction,lop = $lop,netsal = $netsalary WHERE id = $id";
     $result_query     = $conn->query($result);
     if ($result_query) {
         echo "<i>";
@@ -22,19 +23,19 @@ if (isset($_POST['update'])) {
     }
 }
 ?>
-<p align = "center"><b><a href = "employee_index.php"> Go to the View Page</a></b></p>
+<p align = "center"><b><a href = "view.php"> Go to the View Page</a></b></p>
 <?php
 $result = mysqli_query($conn, "SELECT * FROM employee_detail WHERE id=$id");
 $res         = mysqli_fetch_array($result);
-$empName     = $res['empName'];
-$empId       = $res['empId'];
+$empname     = $res['empName'];
+$empid       = $res['empId'];
 $designation = $res['designation'];
 $gender      = $res['gender'];
 $experience  = $res['experience'];
-$grossSalary = $res['gross_salary'];
+$grosssalary = $res['gross_salary'];
 $deduction   = $res['deduction'];
 $lop         = $res['lop'];
-$netSalary   = $res['netsal'];
+$netsalary   = $res['netsal'];
 ?>
 <html>
 <head>
@@ -45,10 +46,10 @@ $netSalary   = $res['netsal'];
 <table>
 <h1 align = "center"> Employee Update operation</h1>
 <tr> <th> Employee Name </th> <td> <input id ="text" name= "empName" value="<?php
-echo $empName;
+echo $empname;
 ?>" required/> </td></tr>
 <tr> <th> Employee Id </th> <td><input id ="number" name ="empId"   value="<?php
-echo $empId;
+echo $empid;
 ?>" required/></td></tr>
 <tr> <th> Designation </th> <td><input id ="text" name ="designation" value="<?php
 echo $designation;
@@ -59,7 +60,7 @@ echo $designation;
 echo $experience;
 ?>" required></td></tr>
   <tr> <th> Gross Salary </th> <td><input id ="number" name ="gross_salary" value="<?php
-echo $grossSalary;
+echo $grosssalary;
 ?>" required/></td></tr>
   <tr> <th> Deduction </th> <td><input id ="number" name ="deduction" value="<?php
 echo $deduction;
@@ -68,7 +69,7 @@ echo $deduction;
 echo $lop;
 ?>" required/></td></tr>
   <tr> <th> Net Salary </th> <td><input id ="number" name ="netsal" value="<?php
-echo $netSalary;
+echo $netsalary;
 ?>" /></td></tr>
 <tr> <td><p align= "center"><input type="submit" name="update" value="Update" /></p></td></tr> 
   </table>
