@@ -35,7 +35,7 @@ if ($result->num_rows > 0) {
         echo '<a href="delete.php?id='. $row['id'] .'">Remove</a>';
         echo ' ';
         echo '<a href="update.php?id='. $row['id'] .'">Edit</a>';
-        echo '<a href="record.php?id='. $row['id'] .'">Read</a>';
+        echo '<a href="view_record.php?id='. $row['id'] .'">Read</a>';
         echo "</b>";
         echo "</b>";
         echo "</tr>";

@@ -1,51 +1,76 @@
-<html>
-<?php
+ <?php
 require "dbconfig.php";
-   // require 'db_select.php';
-    $sql1 = "SELECT * FROM employee_detail";
-    $result = $conn->query($sql1);
-    if ($result->num_rows > 0) {
-    ?>
-    <table>
-    <tr>
-    <th>Employee Name</th>
-    <th>Employee Id</th>
-    <th>Designation</th>
-    <th>Gender</th>
-    <th>Experience</th>
-    <th>Gross Salary</th>
-    <th>Deduction</th>
-    <th>LOP</th>
-    <th>Net Salary</th>
-    </tr>
-    <?php
-    while($row = $result->fetch_assoc()) {   
-        echo "<tr>
-        <td>".$row["empName"]."</td>
-        <td>".$row["empId"]."</td>
-        <td>".$row["designation"]."</td>
-        <td>".$row["gender"]."</td>
-        <td>".$row["experience"]."</td>
-        <td>".$row["gross_salary"]."</td>
-        <td>".$row["deduction"]."</td>
-        <td>".$row["lop"]."</td>
-        <td>".$row["netsal"]."</td>";
-        echo '<td width=250>';
-        //$calculate=$_POST['gross_salary']-($_POST['deduction']+ $_POST['lop']);
-         //echo $calculate;
-        echo '<a href="delete.php?id='. $row['id'] .'">Remove</a>';
-        echo ' ';
-        echo '<a href="update.php?id='. $row['id'] .'">Edit</a>';
-        echo "</tr>";
-    }
-    ?>
-    <a href ="index.php"> Return to the home page </a>
-    </table>
-    <?php
-    } else {
-     echo "0 results";
-    }   
-mysqli_close($conn);
+$id     = $_GET['id'];
+$result = mysqli_query($conn, "SELECT * FROM employee_detail WHERE id=$id");
+$res    = mysqli_fetch_assoc($result);
 ?>
- 
-    
+<?php
+$empname     = $res['empName'];
+$empid       = $res['empId'];
+$designation = $res['designation'];
+$gender      = $res['gender'];
+$experience  = $res['experience'];
+$grosssalary = $res['gross_salary'];
+$deduction   = $res['deduction'];
+$lop         = $res['lop'];
+$netsalary   = $res['netsal'];
+?>
+<a href ="view.php">Back </a>
+<?php
+echo "<table>";
+echo "<p align =center>";
+echo "<tr>";
+echo "<th>Employee Name</th>";
+echo "<td>";
+echo $empname;
+echo "</td>";
+echo "</tr>";
+echo "<tr>";
+echo "<th>Employee ID </th>";
+echo "<td>";
+echo $empid;
+echo "</td>";
+echo "</tr>";
+echo "<tr>";
+echo "<th>Designation </th>";
+echo "<td>";
+echo $designation;
+echo "</td>";
+echo "</tr>";
+echo "<tr>";
+echo "<th>Gender </th>";
+echo "<td>";
+echo $gender;
+echo "</td>";
+echo "</tr>";
+echo "<tr>";
+echo "<th> Experience </th>";
+echo "<td>";
+echo $experience;
+echo "</td>";
+echo "</tr>";
+echo "<th> Gross Salary </th>";
+echo "<td>";
+echo $grosssalary;
+echo "</td>";
+echo "</tr>";
+echo "<th>Deduction</th>";
+echo "<td>";
+echo $deduction;
+echo "</td>";
+echo "</tr>";
+echo "<tr>";
+echo "<th>LOP</th>";
+echo "<td>";
+echo $lop;
+echo "<td/>";
+echo "</tr>";
+echo "<tr>";
+echo "<th>Net Salary </th>";
+echo "<td>";
+echo $netsalary;
+echo "</td>";
+echo "</tr>";
+?>
+</p>
+</table>

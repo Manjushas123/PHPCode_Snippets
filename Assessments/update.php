@@ -22,7 +22,7 @@ if (isset($_POST['update'])) {
     }
 }
 ?>
-<p align = "center"><b><a href = "employee_index.php"> Go to the View Page</a></b></p>
+<p align = "center"><b><a href = "index.php"> Go to the View Page</a></b></p>
 <?php
 $result = mysqli_query($conn, "SELECT * FROM employee_detail WHERE id=$id");
 $res         = mysqli_fetch_array($result);
