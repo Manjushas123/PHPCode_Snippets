@@ -23,6 +23,11 @@ if (isset($_POST['insert'])) {
         $desError ="Please enter the Designation";
         echo "<br/>";
     }
+    if (empty($gender)) {
+        $genderError ="Please enter the Gender";
+        echo "<br/>";
+        
+    }
     if (empty($experience)) {
         $expError ="Please enter the Experience";
         echo "<br/>";
@@ -39,7 +44,7 @@ if (isset($_POST['insert'])) {
         $lopError ="Please enter the Lop";
         echo "<br>";
     }
-    if (!empty($empName) && !empty($empId) && !empty($designation) && !empty($experience) && !empty($grossSalary) && !empty($deduction) && !empty($lop)) {
+    if (!empty($empName) && !empty($empId) && !empty($designation) && !empty($gender) && !empty($experience) && !empty($grossSalary) && !empty($deduction) && !empty($lop)) {
         $sql1 = "INSERT INTO employee_detail(empName,empId,designation,gender,experience,gross_salary,deduction,lop,netsal) VALUES('$empName',$empId,'$designation','$gender',$experience,$grossSalary,$deduction,$lop,$netSalary)";
     if (mysqli_query($conn, $sql1)) {
         header('Location: view.php');
@@ -62,8 +67,14 @@ if (isset($_POST['insert'])) {
 <tr> <th> Employee Name </th> <td> <input id ="text" name= "empName"  /> <?php echo $nameError ?></td></tr>
 <tr> <th> Employee Id </th> <td><input id ="number" name ="empId"  /><?php echo $idError ?></td></tr>
 <tr> <th> Designation </th> <td><input id ="text" name ="designation"/><?php echo $desError ?></td></tr>
-<tr><th> Gender</th><td><input type="radio" name="gender" value="male" checked> Male
-<input type="radio" name="gender" value="female"> Female </td></tr>
+<tr><th> Gender</th><td><input type="radio" <?php if($gender == "male") { echo "checked"; } ?>  name="gender" value="male" />Male<br />
+<input type="radio" <?php if($gender == "female") echo "checked" ?> name="gender" value="female" />Female<br />
+<?php 
+if (empty($gender)) {
+    echo $genderError;
+    $value = false;
+}  
+?></td></tr>
 <tr> <th> Experience </th> <td><input id ="number" name ="experience" / ><?php echo $expError ?></td></tr>
 <tr> <th> Gross Salary </th> <td><input id ="number" name ="gross_salary"/><?php echo $gsError?></td></tr>
 <tr> <th> Deduction </th> <td><input id ="number" name ="deduction" /><?php echo $dedError ?></td></tr>
