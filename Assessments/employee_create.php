@@ -58,11 +58,25 @@ if (isset($_POST['insert'])) {
 <html>
 <head>
 <title> Employee Details </title>
+<style>
+.button {
+    background-color: #fc0905;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+</style>
 </head>
 <body bgcolor = #DEE2A3>
 <form method = "post" action= "">
 <table>
-<a href ="employee_index.php">Go to the View Page </a>
+<b><a href ="employee_index.php">Go to the View Page </a></b>
 <h1 align = "center" border-style ="solid"> Employee CRUD Application </h1>
 <tr> <th> Employee Name </th> <td> <input id ="text" name= "empName"  /> <?php echo $nameError ?></td></tr>
 <tr> <th> Employee Id </th> <td><input id ="number" name ="empId"  /><?php echo $idError ?></td></tr>
@@ -80,7 +94,7 @@ if (empty($gender)) {
 <tr> <th> Deduction </th> <td><input id ="number" name ="deduction" /><?php echo $dedError ?></td></tr>
 <tr> <th> LOP </th> <td><input id ="number" name ="lop" /><?php echo $lopError ?></td></tr>
 <tr> <th> Net Salary </th> <td><input id ="number" name ="netsal"/></td></tr>
-<tr> <td><p align ="center"><input type="submit" name="insert" value="Insert" /></td></tr></p>
+<tr> <td><p align ="center"><input type="submit" class ="button" name="insert" value="Insert" /></td></tr></p>
 </table>
 </form>
 <p align="center"></p>

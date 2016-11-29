@@ -39,8 +39,22 @@ $netSalary   = $res['netsal'];
 <html>
 <head>
 <title> Employee Details </title>
+<style>
+.button {
+    background-color: #fc0905;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+</style>
 </head>
-<body background ="images.jpeg">
+<body bgcolor = #DEE2A3>
 <form method = "post" action= "">
 <table>
 <h1 align = "center"> Employee Update operation</h1>
@@ -53,8 +67,9 @@ echo $empId;
 <tr> <th> Designation </th> <td><input id ="text" name ="designation" value="<?php
 echo $designation;
 ?>" required/></td></tr>
-<tr><th> Gender</th><td><input type="radio" name="gender" value="male"  checked> Male
-  <input type="radio" name="gender" value="female"> Female </td></tr>
+<tr><th> Gender</th><td><input type="radio" <?php if($gender == "male") { echo "checked"; } ?>  name="gender" value="male" />Male<br />
+<input type="radio" <?php if($gender == "female") echo "checked" ?> name="gender" value="female" />Female<br />
+</td></tr>
   <tr> <th> Experience </th> <td><input id ="number" name ="experience"/ value="<?php
 echo $experience;
 ?>" required></td></tr>
@@ -70,7 +85,7 @@ echo $lop;
   <tr> <th> Net Salary </th> <td><input id ="number" name ="netsal" value="<?php
 echo $netSalary;
 ?>" /></td></tr>
-<tr> <td><p align= "center"><input type="submit" name="update" value="Update" /></p></td></tr> 
+<tr> <td><p align= "center"><input type="submit"  class = "button" name="update" value="Update" /></p></td></tr> 
   </table>
   </form>
   <p align="center"></p>
