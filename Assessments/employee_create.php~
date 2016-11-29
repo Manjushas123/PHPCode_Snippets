@@ -1,38 +1,37 @@
 <?php
 require "dbconfig.php";
 if (isset($_POST['insert'])) { 
-    $empname     = $_POST['empName'];
-    $empid       = $_POST['empId'];
+    $empName     = $_POST['empName'];
+    $empId       = $_POST['empId'];
     $designation = $_POST['designation'];
     $gender      = $_POST['gender'];
     $experience  = $_POST['experience'];
-    $grosssalary = $_POST['gross_salary'];
+    $grossSalary = $_POST['gross_salary'];
     $deduction   = $_POST['deduction'];
     $lop         = $_POST['lop'];
-    $netsalary   =  $grosssalary - ((($grosssalary / 30) * $lop) + $deduction);
-    if (empty($empname)) {
+    $calculate   =$grossSalary / 30;
+    $netSalary   =  $grossSalary - (($calculate * $lop) + $deduction);
+    if (empty($empName)) {
         $nameError ="please enter the employee name";
         echo $nameError;
         echo "<br/>";
     }
-    if (empty($empid)) { 
+    if (empty($empId)) { 
         $idError ="please enter the employee Id";
         echo $idError;
         echo "<br/>";
-
     }
     if (empty($designation)) {
         $desError ="please enter the designation";
         echo $desError;
         echo "<br/>";
     }
-
     if (empty($experience)) {
         $expError ="please enter the experience";
         echo $expError ;
         echo "<br/>";
     }
-    if (empty($grosssalary)) {
+    if (empty($grossSalary)) {
         $gsError ="please enter the gross salary";
         echo $gsError;
         echo "<br>";
@@ -47,16 +46,13 @@ if (isset($_POST['insert'])) {
         echo $lopError;
         echo "<br>";
     }
-
-    if(!empty($empname) && !empty($empid) && !empty($designation) && !empty($experience) && !empty($grosssalary) && !empty($deduction) && !empty($lop)) {
-
-      $sql1 = "INSERT INTO employee_detail(empName,empId,designation,gender,experience,gross_salary,deduction,lop,netsal) VALUES('$empname',$empid,'$designation','$gender',$experience,$grosssalary,$deduction,$lop,$netsalary)";
-
-      if (mysqli_query($conn, $sql1)) {
-          header('Location: view.php');
-      } else {
+    if (!empty($empName) && !empty($empId) && !empty($designation) && !empty($experience) && !empty($grossSalary) && !empty($deduction) && !empty($lop)) {
+        $sql1 = "INSERT INTO employee_detail(empName,empId,designation,gender,experience,gross_salary,deduction,lop,netsal) VALUES('$empName',$empId,'$designation','$gender',$experience,$grossSalary,$deduction,$lop,$netSalary)";
+    if (mysqli_query($conn, $sql1)) {
+        header('Location: view.php');
+    } else {
           echo "Error in inserting: " . mysqli_error($conn);
-      }
+    }
 
     } else {
       //echo "Please enter all fields";
@@ -70,6 +66,7 @@ if (isset($_POST['insert'])) {
 <body background = "insert1.png">
 <form method = "post" action= "">
 <table>
+<a href ="employee_index.php">Go to the View Page </a>
 <h1 align = "center" border-style ="solid"> Employee CRUD Application </h1>
 <tr> <th> Employee Name </th> <td> <input id ="text" name= "empName"  /> </td></tr>
 <tr> <th> Employee Id </th> <td><input id ="number" name ="empId"  /></td></tr>

@@ -9,41 +9,34 @@ if (isset($_POST['insert'])) {
     $grossSalary = $_POST['gross_salary'];
     $deduction   = $_POST['deduction'];
     $lop         = $_POST['lop'];
-    $calculate   =$grossSalary / 30;
-    $netSalary   =  $grossSalary - (($calculate * $lop) + $deduction);
+    $calculate   = $grossSalary / 30;
+    $netSalary   = $grossSalary - (($calculate * $lop) + $deduction);
     if (empty($empName)) {
-        $nameError ="please enter the employee name";
-        echo $nameError;
+        $nameError ="Please enter the Employee Name";
         echo "<br/>";
     }
     if (empty($empId)) { 
-        $idError ="please enter the employee Id";
-        echo $idError;
+        $idError ="Please enter the Employee Id";
         echo "<br/>";
     }
     if (empty($designation)) {
-        $desError ="please enter the designation";
-        echo $desError;
+        $desError ="Please enter the Designation";
         echo "<br/>";
     }
     if (empty($experience)) {
-        $expError ="please enter the experience";
-        echo $expError ;
+        $expError ="Please enter the Experience";
         echo "<br/>";
     }
     if (empty($grossSalary)) {
-        $gsError ="please enter the gross salary";
-        echo $gsError;
+        $gsError ="Please enter the Gross Salary";
         echo "<br>";
     }
     if (empty($deduction)) {
-        $dedError ="please enter the deduction";
-        echo $dedError;
+        $dedError ="Please enter the Deduction";
         echo "<br>";
     }
     if (empty($lop)) {
-        $lopError ="please enter the lop";
-        echo $lopError;
+        $lopError ="Please enter the Lop";
         echo "<br>";
     }
     if (!empty($empName) && !empty($empId) && !empty($designation) && !empty($experience) && !empty($grossSalary) && !empty($deduction) && !empty($lop)) {
@@ -53,9 +46,7 @@ if (isset($_POST['insert'])) {
     } else {
           echo "Error in inserting: " . mysqli_error($conn);
     }
-
     } else {
-      //echo "Please enter all fields";
     }
 }
 ?>
@@ -68,19 +59,19 @@ if (isset($_POST['insert'])) {
 <table>
 <a href ="employee_index.php">Go to the View Page </a>
 <h1 align = "center" border-style ="solid"> Employee CRUD Application </h1>
-<tr> <th> Employee Name </th> <td> <input id ="text" name= "empName"  /> </td></tr>
-<tr> <th> Employee Id </th> <td><input id ="number" name ="empId"  /></td></tr>
-<tr> <th> Designation </th> <td><input id ="text" name ="designation"/></td></tr>
+<tr> <th> Employee Name </th> <td> <input id ="text" name= "empName"  /> <?php echo $nameError ?></td></tr>
+<tr> <th> Employee Id </th> <td><input id ="number" name ="empId"  /><?php echo $idError ?></td></tr>
+<tr> <th> Designation </th> <td><input id ="text" name ="designation"/><?php echo $desError ?></td></tr>
 <tr><th> Gender</th><td><input type="radio" name="gender" value="male" checked> Male
-  <input type="radio" name="gender" value="female"> Female </td></tr>
-  <tr> <th> Experience </th> <td><input id ="number" name ="experience" / ></td></tr>
-  <tr> <th> Gross Salary </th> <td><input id ="number" name ="gross_salary"/></td></tr>
-  <tr> <th> Deduction </th> <td><input id ="number" name ="deduction" /></td></tr>
-  <tr> <th> LOP </th> <td><input id ="number" name ="lop" /></td></tr>
-  <tr> <th> Net Salary </th> <td><input id ="number" name ="netsal"/></td></tr>
+<input type="radio" name="gender" value="female"> Female </td></tr>
+<tr> <th> Experience </th> <td><input id ="number" name ="experience" / ><?php echo $expError ?></td></tr>
+<tr> <th> Gross Salary </th> <td><input id ="number" name ="gross_salary"/><?php echo $gsError?></td></tr>
+<tr> <th> Deduction </th> <td><input id ="number" name ="deduction" /><?php echo $dedError ?></td></tr>
+<tr> <th> LOP </th> <td><input id ="number" name ="lop" /><?php echo $lopError ?></td></tr>
+<tr> <th> Net Salary </th> <td><input id ="number" name ="netsal"/></td></tr>
 <tr> <td><p align ="center"><input type="submit" name="insert" value="Insert" /></td></tr></p>
-  </table>
-  </form>
-  <p align="center"></p>
-  </body>
-  </html>
+</table>
+</form>
+<p align="center"></p>
+</body>
+</html>
