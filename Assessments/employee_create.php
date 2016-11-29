@@ -59,7 +59,7 @@ if (isset($_POST['insert'])) {
 <head>
 <title> Employee Details </title>
 </head>
-<body background = "insert1.png">
+<body bgcolor = #DEE2A3>
 <form method = "post" action= "">
 <table>
 <a href ="employee_index.php">Go to the View Page </a>
