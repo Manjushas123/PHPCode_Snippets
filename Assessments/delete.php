@@ -4,11 +4,7 @@ $id = $_GET['id'];
 $delete_query = "DELETE FROM employee_detail WHERE id=$id";
 $result = $conn->query($delete_query);
 if ($result) {
-    echo "<i>";
-    echo "<p align = center>";
-    echo "Record Deleted Successfully";
-    echo "</p>";
-    echo "</i>";
+    location("header:index.php");
 ?>    
 <body background color ="pink">
 <br>
