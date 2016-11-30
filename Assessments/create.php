@@ -82,13 +82,12 @@ if (isset($_POST['insert'])) {
 <tr> <th> Employee Id </th> <td><input id ="number" name ="empId"  value = "<?php echo $empId; ?>" /><?php echo $idError ?></td></tr>
 <tr>
 <th>Designation:</th>
-<td><select name="designation" >
-<option></option>
-<option <?php if ($designation == 'Jr Engineer') { ?> selected <?php } ?> value="Jr Engineer ">Jr Engineer</option>
+<td><select name="designation" value = "<?php echo !empty($designation) ? $designation : '';?>"  >
+<option disabled selected value></option>
 <option <?php if ($designation == 'intern') { ?> selected <?php } ?> value="intern">intern</option>
 <option <?php if ($designation == 'HR') { ?> selected <?php } ?> value="HR">HR</option>
-<option <?php if ($designation == 'Sr Engineer') { ?> selected <?php } ?> value="Sr Engineer">Sr Engineer</option>
-<option <?php if ($designation == 'Sw Consultant') { ?> selected <?php } ?> value="Sw Consultant">Sw Consultant</option>
+<option <?php if ($designation == 'SrEngineer') { ?> selected <?php } ?> value="SrEngineer">Sr Engineer</option>
+<option <?php if ($designation == 'SwConsultant') { ?> selected <?php } ?> value="SwConsultant">Sw Consultant</option>
 </select>
 <?php 
 if (empty($designation)) {
