@@ -1,6 +1,6 @@
 <?php
 require "dbconfig.php";
-if (isset($_POST['insert'])) { 
+if (isset($_POST['create'])) { 
     $empName     = $_POST['empName'];
     $empId       = $_POST['empId'];
     $designation = $_POST['designation'];
@@ -11,40 +11,49 @@ if (isset($_POST['insert'])) {
     $lop         = $_POST['lop'];
     $calculate   = $grossSalary / 30;
     $netSalary   = $grossSalary - (($calculate * $lop) + $deduction);
+    $valid = true;
     if (empty($empName) || !preg_match("/^[a-zA-Z'-]+$/", $empName)) {
-        $nameError = "Please enter the Employee Name";
+        $nameError = "Please enter the valid Employee Name";
+        $valid = false;
         echo "<br/>";
     }
     if (empty($empId) ||  !preg_match("/^0$|^[-]?[1-9][0-9]*$/",$empId)) { 
-        $idError = "Please enter the Employee Id";
+        $idError = "Please enter the valid Employee Id";
+        $valid = false;
         echo "<br/>";
     }
     if (empty($designation)) {
-        $designationError = "Please enter the Designation";
+        $designationError = "Please enter the valid Designation";
+        $valid = false;
         echo "<br/>";
     }
     if (empty($gender)) {
         $genderError = "Please enter the Gender";
+        $valid = false;
         echo "<br/>";
         
     }
     if (empty($experience) || !preg_match("/^0$|^[-]?[1-9][0-9]*$/",$experience)) {
-        $experienceError = "Please enter the Experience";
+        $experienceError = "Please enter the valid Experience";
+        $valid = false;
         echo "<br/>";
     }
     if (empty($grossSalary) || !preg_match("/^0$|^[-]?[1-9][0-9]*$/",$grossSalary)) {
-        $gsError = "Please enter the Gross Salary";
+        $gsError = "Please enter the valid Gross Salary";
+        $valid = false;
         echo "<br>";
     }
     if (empty($deduction) || !preg_match("/^0$|^[-]?[1-9][0-9]*$/",$deduction)) {
-        $deductionError = "Please enter the Deduction";
+        $deductionError = "Please enter the valid Deduction";
+        $valid = false;
         echo "<br>";
     }
     if (empty($lop) || !preg_match("/^0$|^[-]?[1-9][0-9]*$/",$lop) || $lop >30) {
-        $lopError = "Please enter the Lop";
+        $lopError = "Please enter the valid Lop";
+        $valid = false;
         echo "<br>";
     }
-    if (!empty($empName) && !empty($empId) && !empty($designation) && !empty($gender) && !empty($experience) && !empty($grossSalary) && !empty($deduction) && !empty($lop)) {
+    if ($valid) {
         $sql1 = "INSERT INTO employee_detail(empName,empId,designation,gender,experience,gross_salary,deduction,lop,netsal) VALUES('$empName',$empId,'$designation','$gender',$experience,$grossSalary,$deduction,$lop,$netSalary)";
     if (mysqli_query($conn, $sql1)) {
         header('Location: index.php');
@@ -83,7 +92,7 @@ if (isset($_POST['insert'])) {
 <tr>
 <th>Designation:</th>
 <td><select name="designation" value = "<?php echo !empty($designation) ? $designation : '';?>"  >
-<option disabled selected value></option>
+<option selected disabled>Select</option>
 <option <?php if ($designation == 'intern') { ?> selected <?php } ?> value="intern">intern</option>
 <option <?php if ($designation == 'HR') { ?> selected <?php } ?> value="HR">HR</option>
 <option <?php if ($designation == 'SrEngineer') { ?> selected <?php } ?> value="SrEngineer">Sr Engineer</option>
@@ -104,12 +113,14 @@ if (empty($gender)) {
     echo $genderError;
     $value = false;
 }  
-?></td></tr>
+?>
+</td>
+</tr>
 <tr> <th> Experience </th> <td><input id = "number" name = "experience"  value = "<?php echo $experience; ?>" / ><?php echo $experienceError ?></td></tr>
 <tr> <th> Gross Salary </th> <td><input id = "number" name = "gross_salary"  value = "<?php echo $grossSalary; ?>"/><?php echo $gsError?></td></tr>
 <tr> <th> Deduction </th> <td><input id = "number" name = "deduction" value = "<?php echo $deduction; ?>" /> <?php echo $deductionError ?></td></tr>
 <tr> <th> LOP </th> <td><input id = "number" name = "lop" value = "<?php echo $lop; ?>" /> <?php echo $lopError ?></td></tr>
-<tr> <td><p align ="center"><input type = "submit" class = "button" name = "insert" value = "Insert" /></td></tr></p>
+<tr> <td><p align ="center"><input type = "submit" class = "button" name = "create" value = "create" /></td></tr></p>
 </table>
 </form>
 <p align="center"></p>
