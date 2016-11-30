@@ -40,7 +40,7 @@ if (isset($_POST['insert'])) {
         $deductionError = "Please enter the Deduction";
         echo "<br>";
     }
-    if (empty($lop) || !preg_match("/^0$|^[-]?[1-9][0-9]*$/",$lop)) {
+    if (empty($lop) || !preg_match("/^0$|^[-]?[1-9][0-9]*$/",$lop) || $lop >30) {
         $lopError = "Please enter the Lop";
         echo "<br>";
     }
