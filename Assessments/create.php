@@ -11,37 +11,37 @@ if (isset($_POST['insert'])) {
     $lop         = $_POST['lop'];
     $calculate   = $grossSalary / 30;
     $netSalary   = $grossSalary - (($calculate * $lop) + $deduction);
-    if (empty($empName)) {
-        $nameError ="Please enter the Employee Name";
+    if (empty($empName) || !preg_match("/^[a-zA-Z'-]+$/", $empName)) {
+        $nameError = "Please enter the Employee Name";
         echo "<br/>";
     }
-    if (empty($empId)) { 
-        $idError ="Please enter the Employee Id";
+    if (empty($empId) ||  !preg_match("/^0$|^[-]?[1-9][0-9]*$/",$empId)) { 
+        $idError = "Please enter the Employee Id";
         echo "<br/>";
     }
     if (empty($designation)) {
-        $desError ="Please enter the Designation";
+        $designationError = "Please enter the Designation";
         echo "<br/>";
     }
     if (empty($gender)) {
-        $genderError ="Please enter the Gender";
+        $genderError = "Please enter the Gender";
         echo "<br/>";
         
     }
-    if (empty($experience)) {
-        $expError ="Please enter the Experience";
+    if (empty($experience) || !preg_match("/^0$|^[-]?[1-9][0-9]*$/",$experience)) {
+        $experienceError = "Please enter the Experience";
         echo "<br/>";
     }
-    if (empty($grossSalary)) {
-        $gsError ="Please enter the Gross Salary";
+    if (empty($grossSalary) || !preg_match("/^0$|^[-]?[1-9][0-9]*$/",$grossSalary)) {
+        $gsError = "Please enter the Gross Salary";
         echo "<br>";
     }
-    if (empty($deduction)) {
-        $dedError ="Please enter the Deduction";
+    if (empty($deduction) || !preg_match("/^0$|^[-]?[1-9][0-9]*$/",$deduction)) {
+        $deductionError = "Please enter the Deduction";
         echo "<br>";
     }
-    if (empty($lop)) {
-        $lopError ="Please enter the Lop";
+    if (empty($lop) || !preg_match("/^0$|^[-]?[1-9][0-9]*$/",$lop)) {
+        $lopError = "Please enter the Lop";
         echo "<br>";
     }
     if (!empty($empName) && !empty($empId) && !empty($designation) && !empty($gender) && !empty($experience) && !empty($grossSalary) && !empty($deduction) && !empty($lop)) {
@@ -76,27 +76,44 @@ if (isset($_POST['insert'])) {
 <body bgcolor = #DEE2A3>
 <form method = "post" action= "">
 <table>
-<b><a href ="index.php">Go to the View Page </a></b>
+<b><a href = "index.php">Go to the View Page </a></b>
 <h1 align = "center" border-style ="solid"> Employee CRUD Application </h1>
-<tr> <th> Employee Name </th> <td> <input id ="text" name= "empName"  /> <?php echo $nameError ?></td></tr>
-<tr> <th> Employee Id </th> <td><input id ="number" name ="empId"  /><?php echo $idError ?></td></tr>
-<tr> <th> Designation </th> <td><input id ="text" name ="designation"/><?php echo $desError ?></td></tr>
+<tr> <th> Employee Name </th> <td> <input id = "text" name = "empName"  value="<?php echo $empName; ?>" /> <?php echo $nameError ?></td></tr>
+<tr> <th> Employee Id </th> <td><input id ="number" name ="empId"  value = "<?php echo $empId; ?>" /><?php echo $idError ?></td></tr>
+<tr>
+<th>Designation:</th>
+<td><select name="designation" >
+<option></option>
+<option <?php if ($designation == 'Jr Engineer') { ?> selected <?php } ?> value="Jr Engineer ">Jr Engineer</option>
+<option <?php if ($designation == 'intern') { ?> selected <?php } ?> value="intern">intern</option>
+<option <?php if ($designation == 'HR') { ?> selected <?php } ?> value="HR">HR</option>
+<option <?php if ($designation == 'Sr Engineer') { ?> selected <?php } ?> value="Sr Engineer">Sr Engineer</option>
+<option <?php if ($designation == 'Sw Consultant') { ?> selected <?php } ?> value="Sw Consultant">Sw Consultant</option>
+</select>
+<?php 
+if (empty($designation)) {
+    echo $designationError;
+    $value = false;
+}  
+?>
+</td>
+</tr>
 <tr><th> Gender</th><td><input type="radio" <?php if($gender == "male") { echo "checked"; } ?>  name="gender" value="male" />Male<br />
-<input type="radio" <?php if($gender == "female") echo "checked" ?> name="gender" value="female" />Female<br />
+<input type="radio" <?php if($gender == "female") echo "checked" ?> name = "gender" value = "female" />Female<br />
 <?php 
 if (empty($gender)) {
     echo $genderError;
     $value = false;
 }  
 ?></td></tr>
-<tr> <th> Experience </th> <td><input id ="number" name ="experience" / ><?php echo $expError ?></td></tr>
-<tr> <th> Gross Salary </th> <td><input id ="number" name ="gross_salary"/><?php echo $gsError?></td></tr>
-<tr> <th> Deduction </th> <td><input id ="number" name ="deduction" /><?php echo $dedError ?></td></tr>
-<tr> <th> LOP </th> <td><input id ="number" name ="lop" /><?php echo $lopError ?></td></tr>
-<tr> <th> Net Salary </th> <td><input id ="number" name ="netsal"/></td></tr>
-<tr> <td><p align ="center"><input type="submit" class ="button" name="insert" value="Insert" /></td></tr></p>
+<tr> <th> Experience </th> <td><input id = "number" name = "experience"  value = "<?php echo $experience; ?>" / ><?php echo $experienceError ?></td></tr>
+<tr> <th> Gross Salary </th> <td><input id = "number" name = "gross_salary"  value = "<?php echo $grossSalary; ?>"/><?php echo $gsError?></td></tr>
+<tr> <th> Deduction </th> <td><input id = "number" name = "deduction" value = "<?php echo $deduction; ?>" /> <?php echo $deductionError ?></td></tr>
+<tr> <th> LOP </th> <td><input id = "number" name = "lop" value = "<?php echo $lop; ?>" /> <?php echo $lopError ?></td></tr>
+<tr> <td><p align ="center"><input type = "submit" class = "button" name = "insert" value = "Insert" /></td></tr></p>
 </table>
 </form>
 <p align="center"></p>
 </body>
 </html>
+
