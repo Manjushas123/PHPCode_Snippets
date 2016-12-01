@@ -1,5 +1,6 @@
-<?php
-function validation($nameError,$idError,$designationError, $genderError, $experienceError,$gsError, $deductionError,  $lopError)
+ <?php
+$valid = true;
+function validation()
 {
  if(isset($_POST['submit'])) {
 $empName     = $_POST['empName'];
@@ -12,9 +13,11 @@ $deduction   = $_POST['deduction'];
 $lop         = $_POST['lop'];
 $calculate   = $grossSalary / 30;
 $netSalary   = $grossSalary - (($calculate * $lop) + $deduction);
-$valid       = true;
+$valid = true;
+//$GLOBALS['valid'];
 if (empty($empName) || !preg_match("/^[a-zA-Z'-]+$/", $empName)) {
     $nameError = "Please enter the valid Employee Name";
+    echo $nameError
     $valid     = false;
     echo "<br/>";
 }
@@ -56,5 +59,5 @@ if (empty($lop) || !preg_match("/^0$|^[-]?[1-9][0-9]*$/", $lop) || $lop > 30) {
 }
 }
 }
-validation($nameError,$idError,$designationError, $genderError, $experienceError,$gsError, $deductionError,  $lopError);
+validation();
 ?> 
