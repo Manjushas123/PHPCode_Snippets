@@ -1,4 +1,4 @@
-<?phps
+<?php
 function validation($data)
 {
     $empName = $data['empName'];
@@ -31,12 +31,14 @@ function validation($data)
     if (empty($gender)) {
         $genderError = "Please enter the Gender";
         $errMsgs['gender'] = $genderError;
-        $valid = false;    
+        $valid = false;
+        
     }
     if (empty($experience) || !preg_match("/^0$|^[-]?[1-9][0-9]*$/", $experience)) {
         $experienceError = "Please enter the valid Experience";
         $errMsgs['experience'] = $experienceError;
-        $valid =false;  
+        $valid =false;
+        
     }
     if (empty($grossSalary) || !preg_match("/^0$|^[-]?[1-9][0-9]*$/", $grossSalary)) {
         $gsError = "Please enter the valid Gross Salary";
@@ -51,7 +53,7 @@ function validation($data)
     if (empty($lop) || !preg_match("/^0$|^[-]?[1-9][0-9]*$/", $lop) || $lop > 30) {
         $lopError = "Please enter the valid Lop";
         $errMsgs['lop'] = $lopError;
-        $valid = false;
+        $valid  = false;
     }
     $resp = array(
         "status" => $valid,
