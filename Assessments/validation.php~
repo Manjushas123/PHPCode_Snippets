@@ -1,63 +1,65 @@
- <?php
-$valid = true;
-function validation()
+<?php
+function validation($data)
 {
- if(isset($_POST['submit'])) {
-$empName     = $_POST['empName'];
-$empId       = $_POST['empId'];
-$designation = $_POST['designation'];
-$gender      = $_POST['gender'];
-$experience  = $_POST['experience'];
-$grossSalary = $_POST['gross_salary'];
-$deduction   = $_POST['deduction'];
-$lop         = $_POST['lop'];
-$calculate   = $grossSalary / 30;
-$netSalary   = $grossSalary - (($calculate * $lop) + $deduction);
-$valid = true;
-//$GLOBALS['valid'];
-if (empty($empName) || !preg_match("/^[a-zA-Z'-]+$/", $empName)) {
-    $nameError = "Please enter the valid Employee Name";
-    echo $nameError
-    $valid     = false;
-    echo "<br/>";
+    $empName     = $data['empName'];
+    $empId       = $data['empId'];
+    $designation = $data['designation'];
+    $gender      = $data['gender'];
+    $experience  = $data['experience'];
+    $grossSalary = $data['gross_salary'];
+    $deduction   = $data['deduction'];
+    $lop         = $data['lop'];
+    $calculate   = $grossSalary / 30;
+    $netSalary   = $grossSalary - (($calculate * $lop) + $deduction);
+    $valid       = true;
+    $errMsgs     = array();
+    if (empty($empName) || !preg_match("/^[a-zA-Z'-]+$/", $empName)) {
+        $nameError          = "Please enter the valid Employee Name";
+        $errMsgs['empName'] = $nameError;
+        $valid              = false;
+    }
+    if (empty($empId) || !preg_match("/^0$|^[-]?[1-9][0-9]*$/", $empId)) {
+        $idError          = "Please enter the valid Employee Id";
+        $errMsgs['empId'] = $idError;
+        $valid            = false;
+    }
+    if (empty($designation)) {
+        $designationError       = "Please enter the valid Designation";
+        $errMsgs['designation'] = $designationError;
+        $valid                  = false;
+    }
+    if (empty($gender)) {
+        $genderError       = "Please enter the Gender";
+        $errMsgs['gender'] = $genderError;
+        $valid             = false;
+        
+    }
+    if (empty($experience) || !preg_match("/^0$|^[-]?[1-9][0-9]*$/", $experience)) {
+        $experienceError       = "Please enter the valid Experience";
+        $errMsgs['experience'] = $experienceError;
+        $valid                 = false;
+        
+    }
+    if (empty($grossSalary) || !preg_match("/^0$|^[-]?[1-9][0-9]*$/", $grossSalary)) {
+        $gsError                 = "Please enter the valid Gross Salary";
+        $errMsgs['gross_salary'] = $gsError;
+        $valid                   = false;
+    }
+    if (empty($deduction) || !preg_match("/^0$|^[-]?[1-9][0-9]*$/", $deduction)) {
+        $deductionError       = "Please enter the valid Deduction";
+        $errMsgs['deduction'] = $deductionError;
+        $valid                = false;
+    }
+    if (empty($lop) || !preg_match("/^0$|^[-]?[1-9][0-9]*$/", $lop) || $lop > 30) {
+        $lopError       = "Please enter the valid Lop";
+        $errMsgs['lop'] = $lopError;
+        $valid          = false;
+    }
+    $resp = array(
+        "status" => $valid,
+        "message" => $errMsgs
+    );
+    return $resp;   
 }
-if (empty($empId) || !preg_match("/^0$|^[-]?[1-9][0-9]*$/", $empId)) {
-    $idError = "Please enter the valid Employee Id";
-    $valid   = false;
-    echo "<br/>";
-}
-if (empty($designation)) {
-    $designationError = "Please enter the valid Designation";
-    $valid            = false;
-    echo "<br/>";
-}
-if (empty($gender)) {
-    $genderError = "Please enter the Gender";
-    $valid       = false;
-    echo "<br/>";
-    
-}
-if (empty($experience) || !preg_match("/^0$|^[-]?[1-9][0-9]*$/", $experience)) {
-    $experienceError = "Please enter the valid Experience";
-    $valid           = false;
-    echo "<br/>";
-}
-if (empty($grossSalary) || !preg_match("/^0$|^[-]?[1-9][0-9]*$/", $grossSalary)) {
-    $gsError = "Please enter the valid Gross Salary";
-    $valid   = false;
-    echo "<br>";
-}
-if (empty($deduction) || !preg_match("/^0$|^[-]?[1-9][0-9]*$/", $deduction)) {
-    $deductionError = "Please enter the valid Deduction";
-    $valid          = false;
-    echo "<br>";
-}
-if (empty($lop) || !preg_match("/^0$|^[-]?[1-9][0-9]*$/", $lop) || $lop > 30) {
-    $lopError = "Please enter the valid Lop";
-    $valid    = false;
-    echo "<br>";
-}
-}
-}
-validation();
 ?> 
+
