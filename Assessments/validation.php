@@ -9,8 +9,6 @@ function validation($data)
     $grossSalary = $data['gross_salary'];
     $deduction = $data['deduction'];
     $lop = $data['lop'];
-    $calculate = $grossSalary / 30;
-    $netSalary = $grossSalary - (($calculate * $lop) + $deduction);
     $valid  = true;
     $errMsgs = array();
     if (empty($empName) || !preg_match("/^[a-zA-Z'-]+$/", $empName)) {

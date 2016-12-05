@@ -2,6 +2,7 @@
 ob_start();
 require "dbconfig.php";
 require "validation.php";
+require "calculation.php";
 $errorMsg = '';
 if (isset($_POST['submit'])) {
     $empName = $_POST['empName'];
@@ -12,12 +13,12 @@ if (isset($_POST['submit'])) {
     $grossSalary = $_POST['gross_salary'];
     $deduction = $_POST['deduction'];
     $lop = $_POST['lop'];
-    $calculate = $grossSalary / 30;
-    $netSalary = $grossSalary - (($calculate * $lop) + $deduction);
+    $netSalary = calculation($_POST);
     $errorMsg = '';
     $resp = validation($_POST);
     if ($resp['status']) {
-        $sql1 = "INSERT INTO employee_detail(empName,empId,designation,gender,experience,gross_salary,deduction,lop,netsal) VALUES('$empName',$empId,'$designation','$gender',$experience,$grossSalary,$deduction,$lop,$netSalary)";
+        $sql1 = "INSERT INTO employee_detail(empName,empId,designation,gender,experience,gross_salary,deduction,lop,netsal) VALUES('$empName',$empId,
+        '$designation','$gender',$experience,$grossSalary,$deduction,$lop,$netSalary)";
         if (mysqli_query($conn, $sql1)) {
             header('Location: index.php');
         } else {
@@ -56,7 +57,7 @@ echo $empName;
 ?>" /> <?php
 echo (!empty($errorMsg['empName']) ? $errorMsg['empName'] : '');
 ?></td></tr>
-<tr> <th> Employee Id </th> <td><input id ="number" name ="empId"  value = "<?php
+<tr> <th> Employee Id </th> <td><input id = "number" name = "empId"  value = "<?php
 echo $empId;
 ?>" /><?php
 echo (!empty($errorMsg['empId']) ? $errorMsg['empId'] : '');
@@ -128,7 +129,7 @@ echo $lop;
 ?>" /> <?php
 echo (!empty($errorMsg['lop']) ? $errorMsg['lop'] : '');
 ?></td></tr>
-<tr> <td><p align ="center"><input type = "submit" class = "button" name = "submit" value = "create" /></td></tr></p>
+<tr> <td><p align ="center"><input type = "submit" class = "button" name = "submit" value = "Create" /></td></tr></p>
 </table>
 </form>
 <p align="center"></p>

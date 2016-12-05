@@ -2,6 +2,7 @@
 ob_start();
 require "dbconfig.php";
 require "validation.php";
+require "calculation.php";
 $id = $_GET['id'];
 if (isset($_POST['submit'])) {
     $empName = $_POST['empName'];
@@ -12,15 +13,13 @@ if (isset($_POST['submit'])) {
     $grossSalary = $_POST['gross_salary'];
     $deduction = $_POST['deduction'];
     $lop = $_POST['lop'];
-    $calculate = $grossSalary / 30;
-    $netSalary = $grossSalary - (($calculate * $lop) + $deduction);
+    $netSalary = calculation($_POST);
     $errorMsg = '';
     $resp = validation($_POST);
     if ($resp['status']) {
-        $result       = "UPDATE employee_detail SET empName ='$empName', empId = $empId,designation = '$designation',gender = '$gender',experience = $experience,gross_salary = $grossSalary,deduction = $deduction,lop = $lop,netsal = $netSalary WHERE id = $id";
+        $result =  "UPDATE employee_detail SET empName = '$empName', empId = $empId,designation = '$designation',gender = '$gender',experience = $experience,gross_salary = $grossSalary,deduction = $deduction,lop = $lop,netsal = $netSalary WHERE id = $id";
         $result_query = $conn->query($result);
         if ($result_query) {
-            // echo "record updated successfully";
             header("location:index.php");
         } else {
             echo "Error in inserting: " . mysqli_error($conn);
@@ -32,7 +31,7 @@ if (isset($_POST['submit'])) {
 ?>
 <p align = "center"><b><a href = "index.php"> Go to the index Page</a></b></p>
 <?php
-$result = mysqli_query($conn, "SELECT * FROM employee_detail WHERE id=$id");
+$result = mysqli_query($conn, "SELECT * FROM employee_detail WHERE id = $id");
 $res = mysqli_fetch_array($result);
 $empName = $res['empName'];
 $empId = $res['empId'];
