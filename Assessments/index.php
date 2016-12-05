@@ -1,11 +1,19 @@
-<html>
 <?php
-require "dbconfig.php";;
-$sql1 = "SELECT * FROM employee_detail";
-$result = $conn->query($sql1);
+require "dbconfig.php";
+session_start();
+if (isset($_SESSION['success'])) {
+    echo "<p align = center>";
+    echo "Record inserted into database successfully!";
+    echo "</p>";
+    unset($_SESSION['success']);
+}
+$sql = "SELECT * FROM employee_detail";
+$result = $conn->query($sql);
 if ($result->num_rows > 0) {
     ?>
+    <html>
     <table>
+    <body bgcolor = #DEE2A3>
     <tr>
     <th>Employee Name</th>
     <th>Employee Id</th>
@@ -29,25 +37,31 @@ if ($result->num_rows > 0) {
         <td>".$row["deduction"]."</td>
         <td>".$row["lop"]."</td>
         <td>".$row["netsal"]."</td>";
-        echo '<td width=250>';
-        //$calculate=$_POST['gross_salary']-($_POST['deduction']+ $_POST['lop']);
-         //echo $calculate;
-        echo '<a href="delete.php?id='. $row['id'] .'">Remove</a>';
+        echo '<td width = 250>';
+        echo "<b>";
+        echo '<a href ="delete.php?id='. $row['id'] .'">Delete</a>';
         echo ' ';
-        echo '<a href="update.php?id='. $row['id'] .'">Edit</a>';
-        echo '<a href="record.php?id='. $row['id'] .'">Read</a>';
+        echo '<a href="edit.php?id='. $row['id'] .'">Edit</a>';
+        echo ' ';
+        echo '<a href="view.php?id='. $row['id'] .'">View</a>';
         echo "</b>";
         echo "</b>";
         echo "</tr>";
     }
+    if(isset($_POST['submit']))
+    {  
+        echo "record updated successfully";
+    }
     ?>
-    <a href ="create.php"> Return to the home page </a>
+    <b> <p align = "center" > <a href = "create.php"> Return to the Create Page </a></p></b>
+    <h1 align = "center">Employee Details </h1>
     </table>
+    </body>
     <?php
-} else {
+    } else {
      echo "0 results";
-}   
+    }
+    
 mysqli_close($conn);
 ?>
- 
-    
+

@@ -18,9 +18,13 @@ if (isset($_POST['submit'])) {
     $resp = validation($_POST);
     if ($resp['status']) {
         $result =  "UPDATE employee_detail SET empName = '$empName', empId = $empId,designation = '$designation',gender = '$gender',experience = $experience,gross_salary = $grossSalary,deduction = $deduction,lop = $lop,netsal = $netSalary WHERE id = $id";
+          session_start();
         $result_query = $conn->query($result);
+          session_start();
         if ($result_query) {
+            $_SESSION['success'] = 1;
             header("location:index.php");
+            session_end();
         } else {
             echo "Error in inserting: " . mysqli_error($conn);
         }
