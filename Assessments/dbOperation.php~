@@ -101,6 +101,9 @@ class DBOperations
         $deduction = $res['deduction'];
         $lop = $res['lop'];
         $netSalary = $res['netsal'];
+
+
+
     }
 }
 }
