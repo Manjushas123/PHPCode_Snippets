@@ -73,17 +73,17 @@ class DBOperations
 
     public function update($id)
     {
-        $empName      = $data['empName'];
-        $empId        = $data['empId'];
-        $designation  = $data['designation'];
-        $gender       = $data['gender'];
-        $experience   = $data['experience'];
-        $grossSalary  = $data['gross_salary'];
-        $deduction    = $data['deduction'];
-        $lop          = $data['lop'];
+        $empName = $data['empName'];
+        $empId = $data['empId'];
+        $designation = $data['designation'];
+        $gender = $data['gender'];
+        $experience = $data['experience'];
+        $grossSalary = $data['gross_salary'];
+        $deduction = $data['deduction'];
+        $lop = $data['lop'];
         $errorMessage = "";
-        $calculation  = new calculate();
-        $netSalary    = $calculation->calculation($data);
+        $calculation = new calculate();
+        $netSalary = $calculation->calculation($data);
         
           //$result_query = $conn->query($result);
         if (mysqli_query($this->conn, $result)) {
