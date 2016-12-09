@@ -71,7 +71,7 @@ class DBOperations
         
     }
 
-    public function update($data)
+    public function update($id)
     {
         $empName      = $data['empName'];
         $empId        = $data['empId'];
@@ -84,12 +84,14 @@ class DBOperations
         $errorMessage = "";
         $calculation  = new calculate();
         $netSalary    = $calculation->calculation($data);
-        $result =  "UPDATE employee_detail SET empName = '$empName', empId = $empId,designation = '$designation',gender = '$gender',experience = $experience,gross_salary = $grossSalary,deduction = $deduction,lop = $lop,netsal = $netSalary WHERE id = $id";
+        
           //$result_query = $conn->query($result);
         if (mysqli_query($this->conn, $result)) {
-            return true;
+            $result =  "UPDATE employee_detail SET empName = '$empName', empId = $empId,designation = '$designation',gender = '$gender',experience = $experience,gross_salary = $grossSalary,deduction = $deduction,lop = $lop,netsal = $netSalary WHERE id = $id";
+        
         } else if (!mysqli_query($this->conn, $result)) {
             return false;
+        }
         $result = mysqli_query($this->conn, "SELECT * FROM employee_detail WHERE id = $id");
         $res = mysqli_fetch_array($result);
         $empName = $res['empName'];
@@ -101,9 +103,6 @@ class DBOperations
         $deduction = $res['deduction'];
         $lop = $res['lop'];
         $netSalary = $res['netsal'];
-
-
-
     }
 }
 }
