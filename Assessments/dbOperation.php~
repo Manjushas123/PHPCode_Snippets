@@ -1,4 +1,4 @@
- <?php
+<?php
 ob_start();
 require('calculation.php');
 class DBOperations
@@ -29,7 +29,7 @@ class DBOperations
     }
     public function ReadRecord($id)
     {
-        $read_query = "SELECT * FROM employee_detail where id=$id";
+        $read_query = "SELECT * FROM employee_detail where id = $id";
         //print_r($read_query);
         //print_r($read_query);
         $result     = $this->conn->query($read_query);
@@ -70,41 +70,40 @@ class DBOperations
         }
         
     }
-
+    
     public function update($id)
+    //echo "hii";
     {
-        $empName = $data['empName'];
-        $empId = $data['empId'];
-        $designation = $data['designation'];
-        $gender = $data['gender'];
-        $experience = $data['experience'];
-        $grossSalary = $data['gross_salary'];
-        $deduction = $data['deduction'];
-        $lop = $data['lop'];
+        $empName      = $data['empName'];
+        $empId        = $data['empId'];
+        $designation  = $data['designation'];
+        $gender       = $data['gender'];
+        $experience   = $data['experience'];
+        $grossSalary  = $data['gross_salary'];
+        $deduction    = $data['deduction'];
+        $lop          = $data['lop'];
         $errorMessage = "";
-        $calculation = new calculate();
-        $netSalary = $calculation->calculation($data);
+        $calculation  = new calculate();
+        $netSalary    = $calculation->calculation($data);
         
-          //$result_query = $conn->query($result);
-        if (mysqli_query($this->conn, $result)) {
-            $result =  "UPDATE employee_detail SET empName = '$empName', empId = $empId,designation = '$designation',gender = '$gender',experience = $experience,gross_salary = $grossSalary,deduction = $deduction,lop = $lop,netsal = $netSalary WHERE id = $id";
-        
-        } else if (!mysqli_query($this->conn, $result)) {
+        $result_query = "UPDATE employee_detail SET empName = '$empName', empId = $empId,designation = '$designation',gender = '$gender',experience = $experience,gross_salary = $grossSalary,deduction = $deduction,lop = $lop,netsal = $netSalary WHERE id = $id";
+        $result       = $this->conn->query($result_query);
+        ///print_r($result);
+        //exit();
+        if ($result) {
+            return true;
+            
+        } else {
             return false;
         }
-        $result = mysqli_query($this->conn, "SELECT * FROM employee_detail WHERE id = $id");
-        $res = mysqli_fetch_array($result);
-        $empName = $res['empName'];
-        $empId = $res['empId'];
-        $designation = $res['designation'];
-        $gender = $res['gender'];
-        $experience = $res['experience'];
-        $grossSalary = $res['gross_salary'];
-        $deduction = $res['deduction'];
-        $lop = $res['lop'];
-        $netSalary = $res['netsal'];
+        //return $result;
+        /*if ($result) {
+        //echo "hii";
+        //header("location:index.php");
+        return $result;
+        } else {
+        return false;
+        }*/  
     }
 }
-}
-
 ?> 
