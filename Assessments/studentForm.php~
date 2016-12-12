@@ -1,18 +1,10 @@
-<?php;
-ob_start();
+<?php
 require 'dbOperation.php';
 require 'validation.php';
+
 if(isset($_POST['submit'])){
     $DbObj = new DBOperations();
     $ValueObj = new validate();
-    $empName = $_POST['empName'];
-    $empId = $_POST['empId'];
-    $designation = $_POST['designation'];
-    $gender = $_POST['gender'];
-    $experience = $_POST['experience'];
-    $grossSalary = $_POST['gross_salary'];
-    $deduction = $_POST['deduction'];
-    $lop = $_POST['lop'];
     $resp = $ValueObj->validation($_POST);
     $errorMsg = $resp['message'];
     if($resp['status']){
@@ -21,8 +13,18 @@ if(isset($_POST['submit'])){
             header('Location:index.php');
         }
     }    
+
 }
+ $empName = '';
+    $empId = '';
+    $designation = '';
+    $gender = '';
+    $experience = '';
+    $grossSalary = '';
+    $deduction = '';
+    $lop = '';
 ?>
+
 <html>
 <head>
 <title> Employee Details </title>
