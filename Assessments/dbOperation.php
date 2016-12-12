@@ -14,8 +14,7 @@ class DBOperations
         $this->conn = mysqli_connect($this->db_hostname, $this->db_username, $this->db_password, $this->db_name);
         if (!$this->conn) {
             die("Unable to connect database" . mysqli_error($this->conn));
-        }
-        
+        }   
     }
     public function Delete($id)
     {
@@ -30,12 +29,8 @@ class DBOperations
     public function ReadRecord($id)
     {
         $read_query = "SELECT * FROM employee_detail where id = $id";
-        //print_r($read_query);
-        //print_r($read_query);
         $result     = $this->conn->query($read_query);
-        //print_r($result);
         $row        = $result->fetch_assoc();
-        //print_r($row);
         return $row;
         
     }
@@ -48,7 +43,6 @@ class DBOperations
     
     public function createRecord($data)
     {
-        //echo "hii";
         $empName      = $data['empName'];
         $empId        = $data['empId'];
         $designation  = $data['designation'];
@@ -72,38 +66,28 @@ class DBOperations
     }
     
     public function update($id)
-    //echo "hii";
     {
-        $empName      = $data['empName'];
-        $empId        = $data['empId'];
-        $designation  = $data['designation'];
-        $gender       = $data['gender'];
-        $experience   = $data['experience'];
-        $grossSalary  = $data['gross_salary'];
-        $deduction    = $data['deduction'];
-        $lop          = $data['lop'];
+        $empName      = $_POST['empName'];
+        $empId        = $_POST['empId'];
+        $designation  = $_POST['designation'];
+        $gender       = $_POST['gender'];
+        $experience   = $_POST['experience'];
+        $grossSalary  = $_POST['gross_salary'];
+        $deduction    = $_POST['deduction'];
+        $lop          = $_POST['lop'];
         $errorMessage = "";
         $calculation  = new calculate();
         $netSalary    = $calculation->calculation($data);
         
-        $result_query = "UPDATE employee_detail SET empName = '$empName', empId = $empId,designation = '$designation',gender = '$gender',experience = $experience,gross_salary = $grossSalary,deduction = $deduction,lop = $lop,netsal = $netSalary WHERE id = $id";
+        $result_query = "UPDATE employee_detail SET empName = '$empName', empId = $empId, designation = '$designation',gender = '$gender',experience = $experience,gross_salary = $grossSalary,deduction = $deduction,lop = $lop,netsal = $netSalary WHERE id = $id";//echo $result_query;exit;
         $result       = $this->conn->query($result_query);
-        ///print_r($result);
-        //exit();
         if ($result) {
             return true;
             
         } else {
             return false;
         }
-        //return $result;
-        /*if ($result) {
-        //echo "hii";
-        //header("location:index.php");
-        return $result;
-        } else {
-        return false;
-        }*/  
+        
     }
 }
 ?> 
