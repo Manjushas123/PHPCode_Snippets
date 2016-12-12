@@ -1,12 +1,10 @@
 <?php
-ob_start();
+//ob_start();
 require 'dbconfig.php';
 require 'dbOperation.php';
 require 'validation.php';
 if (!empty($_GET['id'])) {
     $readObj = new DBOperations();
-    $ValueObj = new validate();
-    $resp = $ValueObj->validation($_POST);
     $row= $readObj->ReadRecord($_GET['id']);
     $errorMsg = $resp['message'];
     $empName = $row['empName'];
@@ -18,17 +16,20 @@ if (!empty($_GET['id'])) {
     $deduction = $row['deduction'];
     $lop = $row['lop'];
     $netSalary = $row['netsal'];
+    $ValueObj = new validate();
+    $resp = $ValueObj->validation($_POST);
+    //$errorMsg = $resp['message'];
     if($resp['status']){
-    //$DbObj = new DBOperations();
         $resp = $readObj->update($_GET['id']);
         if($resp) {
-            header('Location:index.php');
+            //header('Location:index.php');
+            $_SESSION['success'] = 1;
+            header("location:index.php");
+            session_end();
         }
-    }    
-
-}
+    }
+}   
 ?>
-
 <html>
 <head>
 <title> Employee Details </title>

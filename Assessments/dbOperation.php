@@ -61,10 +61,8 @@ class DBOperations
             return true;
         } else if (!mysqli_query($this->conn, $insert_query)) {
             return false;
-        }
-        
+        }    
     }
-    
     public function update($id)
     {
         $empName      = $_POST['empName'];
@@ -76,14 +74,14 @@ class DBOperations
         $deduction    = $_POST['deduction'];
         $lop          = $_POST['lop'];
         $errorMessage = "";
-        $calculation  = new calculate();
-        $netSalary    = $calculation->calculation($data);
-        
-        $result_query = "UPDATE employee_detail SET empName = '$empName', empId = $empId, designation = '$designation',gender = '$gender',experience = $experience,gross_salary = $grossSalary,deduction = $deduction,lop = $lop,netsal = $netSalary WHERE id = $id";//echo $result_query;exit;
-        $result       = $this->conn->query($result_query);
+        $calculate = $grossSalary / 30;
+        $netSalary = $grossSalary - (($calculate * $lop) + $deduction);
+       // $netSalary    = $calculation->calculation($grossSalary ,$lop,$deduction);
+        $result_query = "UPDATE employee_detail SET empName = '$empName', empId = $empId, designation = '$designation',gender = '$gender',experience = $experience,gross_salary = $grossSalary,deduction = $deduction,lop = $lop,netsal = $netSalary WHERE id = $id";
+        session_start();//echo $result_query;exit;
+        $result  = $this->conn->query($result_query);
         if ($result) {
-            return true;
-            
+            return true; 
         } else {
             return false;
         }
