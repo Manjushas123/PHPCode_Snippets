@@ -1,5 +1,6 @@
 <?php
-//ob_start();
+session_start();
+ob_start();
 require 'dbconfig.php';
 require 'dbOperation.php';
 require 'validation.php';
@@ -18,17 +19,21 @@ if (!empty($_GET['id'])) {
     $netSalary = $row['netsal'];
     $ValueObj = new validate();
     $resp = $ValueObj->validation($_POST);
-    //$errorMsg = $resp['message'];
-    if($resp['status']){
-        $resp = $readObj->update($_GET['id']);
-        if($resp) {
-            //header('Location:index.php');
-            $_SESSION['success'] = 1;
-            header("location:index.php");
-            session_end();
+   // $errorMsg = $resp['message'];
+    try {
+        if($resp['status']){
+            $resp = $readObj->update($_GET['id']);
+            if($resp) {
+                $_SESSION['success'] = 1;
+                header("location:index.php");
+                session_end();
+            }
         }
-    }
-}   
+    } 
+    catch (Exception $e) {
+        echo 'Caught exception: ',  $e->getMessage(), "\n";
+    }  
+}
 ?>
 <html>
 <head>
