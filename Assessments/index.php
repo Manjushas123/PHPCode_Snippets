@@ -1,14 +1,26 @@
 <?php
-require "dbconfig.php";
 session_start();
+require "dbconfig.php";
+require "dbOperation.php";
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); 
+$DbObj = new DBOperations();
+if ( !empty($_GET['id'])) {
+    try {
+        $response_of_Delete = $DbObj->Delete($_GET['id']);
+    }
+    catch (mysqli_sql_exception $e) {
+        echo $e->getMessage();
+    }
+}
 if (isset($_SESSION['success'])) {
     echo "<p align = center>";
     echo "Record inserted into database successfully!";
     echo "</p>";
     unset($_SESSION['success']);
 }
-$sql = "SELECT * FROM employee_detail";
-$result = $conn->query($sql);
+$result = $DbObj->ListStudents();
+//$sql = "SELECT * FROM employee_detail";
+//$result = $conn->query($sql);
 if ($result->num_rows > 0) {
     ?>
     <html>
@@ -39,21 +51,17 @@ if ($result->num_rows > 0) {
         <td>".$row["netsal"]."</td>";
         echo '<td width = 250>';
         echo "<b>";
-        echo '<a href ="delete.php?id='. $row['id'] .'">Delete</a>';
-        echo ' ';
-        echo '<a href="edit.php?id='. $row['id'] .'">Edit</a>';
-        echo ' ';
-        echo '<a href="view.php?id='. $row['id'] .'">View</a>';
-        echo "</b>";
-        echo "</b>";
-        echo "</tr>";
-    }
-    if(isset($_POST['submit']))
-    {  
-        echo "record updated successfully";
+        ?>
+        <td width=250>
+        <a href="viewObject.php?id=<?php echo $row['id'] ?>">Read</a>
+        <a href="index.php?id=<?php echo $row['id'] ?>">Delete</a>
+        <a href="edit_records.php?id=<?php echo $row['id'] ?>">Edit</a>
+        </td>
+<?php
+echo "<tr/>";
     }
     ?>
-    <b> <p align = "center" > <a href = "create.php"> Return to the Create Page </a></p></b>
+    <b> <p align = "center" > <a href = "employee_form.php"> Return to the Create Page </a></p></b>
     <h1 align = "center">Employee Details </h1>
     </table>
     </body>
@@ -61,7 +69,5 @@ if ($result->num_rows > 0) {
     } else {
      echo "0 results";
     }
-    
 mysqli_close($conn);
 ?>
-

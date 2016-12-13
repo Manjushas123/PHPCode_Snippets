@@ -2,6 +2,7 @@
 ob_start();
 require 'dbOperation.php';
 require 'validation.php';
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); 
 if(isset($_POST['submit'])){
     $DbObj = new DBOperations();
     $ValueObj = new validate();
@@ -23,8 +24,8 @@ if(isset($_POST['submit'])){
             }
         }
     }
-    catch (customException $e) {
-        echo $e->errorMessage();    
+    catch (mysqli_sql_exception $e) {
+        echo $e->getMessage();
     } 
 }
 ?>

@@ -4,6 +4,7 @@ ob_start();
 require 'dbconfig.php';
 require 'dbOperation.php';
 require 'validation.php';
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); 
 if (!empty($_GET['id'])) {
     $readObj = new DBOperations();
     $row= $readObj->ReadRecord($_GET['id']);
@@ -30,8 +31,8 @@ if (!empty($_GET['id'])) {
             }
         }
     } 
-    catch (Exception $e) {
-        echo 'Caught exception: ',  $e->getMessage(), "\n";
+    catch (mysqli_sql_exception $e) {
+        echo $e->getMessage();
     }  
 }
 ?>
