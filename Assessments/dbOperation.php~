@@ -27,7 +27,7 @@ class DBOperations
     }
     public function ReadRecord($id)
     {
-        $read_query = "SELECT * FROM employee_detail where id = $id";
+        $read_query = "select empName,empId,designation,gender,experience ,gross_salary,deduction,lop,netsal,salary,day,month,year from employee_detail join salary_details on employee_detail.id=salary_details.id;";
         $result = $this->conn->query($read_query);
         $row = $result->fetch_assoc();
         return $row;    
@@ -35,6 +35,12 @@ class DBOperations
     public function ListStudents()
     {
         $view_query = "SELECT * FROM employee_detail";
+        $resultset  = $this->conn->query($view_query);
+        return $resultset;
+    }
+     public function ListSalary()
+    {
+        $view_query = "SELECT * FROM salary_details";
         $resultset  = $this->conn->query($view_query);
         return $resultset;
     }
