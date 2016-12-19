@@ -17,7 +17,7 @@ class DBOperations
     }
     public function Delete($id)
     {
-        $delete_query = "DELETE FROM employee_detail WHERE id=$id";
+        $delete_query = "DELETE employee_detail ,salary_details from employee_detail e INNER JOIN salary_details el on e.id=el.id where e.id = {$id}";
         $result       = $this->conn->query($delete_query);
         if ($result === true) {
             return true;
@@ -27,7 +27,7 @@ class DBOperations
     }
     public function ReadRecord($id)
     {
-        $read_query = "select empName,empId,designation,gender,experience ,gross_salary,deduction,lop,netsal,salary,day,month,year from employee_detail join salary_details on employee_detail.id=salary_details.id;";
+        $read_query = "SELECT * from employee_detail e LEFT OUTER JOIN salary_details el on e.id = el.id where e.id = {$id}";
         $result = $this->conn->query($read_query);
         $row = $result->fetch_assoc();
         return $row;    
