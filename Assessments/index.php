@@ -27,6 +27,7 @@ if ($result->num_rows > 0) {
     <table>
     <body bgcolor = #DEE2A3>
     <tr>
+    <th>ID </th>
     <th>Employee Name</th>
     <th>Employee Id</th>
     <th>Designation</th>
@@ -40,6 +41,7 @@ if ($result->num_rows > 0) {
     <?php
     while ($row = $result->fetch_assoc()) {   
         echo "<tr>
+        <td>".$row['id']."</td>
         <td>".$row["empName"]."</td>
         <td>".$row["empId"]."</td>
         <td>".$row["designation"]."</td>
@@ -49,6 +51,7 @@ if ($result->num_rows > 0) {
         <td>".$row["deduction"]."</td>
         <td>".$row["lop"]."</td>
         <td>".$row["netsal"]."</td>";
+
         echo '<td width = 250>';
         echo "<b>";
         ?>
@@ -56,12 +59,14 @@ if ($result->num_rows > 0) {
         <a href="viewObject.php?id=<?php echo $row['id'] ?>">Read</a>
         <a href="index.php?id=<?php echo $row['id'] ?>">Delete</a>
         <a href="edit_records.php?id=<?php echo $row['id'] ?>">Edit</a>
+        <a href="salary_details.php?id=<?php echo $row['id'] ?>">Salary </a>
         </td>
 <?php
 echo "<tr/>";
     }
     ?>
     <b> <p align = "center" > <a href = "employee_form.php"> Return to the Create Page </a></p></b>
+     <b> <p align = "center" > <a href = "salary_index.php"> Salary Details </a></p></b>
     <h1 align = "center">Employee Details </h1>
     </table>
     </body>
