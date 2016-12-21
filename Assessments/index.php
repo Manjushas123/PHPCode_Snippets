@@ -37,26 +37,26 @@ if ($result->num_rows > 0) {
     <th>Net Salary</th>
     </tr>
     <?php
-    while ($row = $result->fetch_assoc()) {   
+    while ($employee_details = $result->fetch_assoc()) {   
         echo "<tr>
-        <td>".$row['id']."</td>
-        <td>".$row["empName"]."</td>
-        <td>".$row["empId"]."</td>
-        <td>".$row["designation"]."</td>
-        <td>".$row["gender"]."</td>
-        <td>".$row["experience"]."</td>
-        <td>".$row["gross_salary"]."</td>
-        <td>".$row["deduction"]."</td>
-        <td>".$row["lop"]."</td>
-        <td>".$row["netsal"]."</td>";
+        <td>".$employee_details['id']."</td>
+        <td>".$employee_details["empName"]."</td>
+        <td>".$employee_details["empId"]."</td>
+        <td>".$employee_details["designation"]."</td>
+        <td>".$employee_details["gender"]."</td>
+        <td>".$employee_details["experience"]."</td>
+        <td>".$employee_details["gross_salary"]."</td>
+        <td>".$employee_details["deduction"]."</td>
+        <td>".$employee_details["lop"]."</td>
+        <td>".$employee_details["netsal"]."</td>";
 
         echo '<td width = 250>';
         echo "<b>";
         ?>
         <td width=250>
-        <a href="viewObject.php?id=<?php echo $row['id'] ?>">Read</a>
-        <a href="edit_records.php?id=<?php echo $row['id'] ?>">Edit</a>
-        <a href="salary_details.php?id=<?php echo $row['id'] ?>">Salary </a>
+        <a href="viewObject.php?id=<?php echo $employee_details['id'] ?>">Read</a>
+        <a href="edit_records.php?id=<?php echo $employee_details['id'] ?>">Edit</a>
+        <a href="salary_details.php?id=<?php echo $employee_details['id'] ?>">Salary </a>
         </td>
 <?php
 echo "<tr/>";
