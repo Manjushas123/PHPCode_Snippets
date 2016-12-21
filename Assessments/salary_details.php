@@ -9,7 +9,8 @@ if (!empty($_GET['id'])) {
     $empName = $row['empName'];
     $id = $_GET['id'];
 }
-if($_POST){
+if ($_POST) {
+    $empName = $POST['emp_name'];
     $id = $_POST['id'];     
     $salary = $_POST['salary'];
     $day =$_POST['day'];
@@ -22,7 +23,6 @@ if($_POST){
         if ($resp['status']) {
             $resp = $readObj->createSalaryRecord($_POST);
             if ($resp) {
-                //header('Location:index.php');
                 echo "records inserted successfully";
             }
         }
@@ -66,7 +66,6 @@ echo $salary;
 ?>" /><?php
 echo (!empty($errorMsg['salary']) ? $errorMsg['salary'] : '');
 ?></td></tr>
-
 <tr> <th> Day </th> <td><input id = "number" name = "day"  value = "<?php
 echo $day;
 ?>" /><?php

@@ -4,27 +4,25 @@ require 'dbOperation.php';
 require 'salary_validation.php';
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); 
 if (!empty($_GET['id'])) {
-	$readObj = new DBOperations();
-	$row= $readObj->ReadRecord($_GET['id']);
-	$empName = $row['empName'];
-	$id = $_GET['id'];
+    $readObj = new DBOperations();
+    $row= $readObj->ReadRecord($_GET['id']);
+    $empName = $row['empName'];
+    $id = $_GET['id'];
 }
-
-if($_POST){
-	$id = $_POST['id'];		
-	$salary = $_POST['salary'];
-	$day =$_POST['day'];
-	$month = $_POST['month'];
-	$year = $_POST['year'];
-	$ValueObj = new validate();
+if ($_POST) {
+    $empName = $POST['emp_name'];
+    $id = $_POST['id'];     
+    $salary = $_POST['salary'];
+    $day =$_POST['day'];
+    $month = $_POST['month'];
+    $year = $_POST['year'];
+    $ValueObj = new validate();
     $resp = $ValueObj->validation($_POST);
-   // print_r($resp);
     $errorMsg = $resp['message'];
-	try {
+    try {
         if ($resp['status']) {
             $resp = $readObj->createSalaryRecord($_POST);
             if ($resp) {
-                //header('Location:index.php');
                 echo "records inserted successfully";
             }
         }
@@ -68,7 +66,6 @@ echo $salary;
 ?>" /><?php
 echo (!empty($errorMsg['salary']) ? $errorMsg['salary'] : '');
 ?></td></tr>
-
 <tr> <th> Day </th> <td><input id = "number" name = "day"  value = "<?php
 echo $day;
 ?>" /><?php
