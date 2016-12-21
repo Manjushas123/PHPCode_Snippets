@@ -26,20 +26,19 @@ if ($result->num_rows > 0) {
     <body bgcolor = #DEE2A3>
     <tr>
     <th>ID </th>
-    <th>Employee Name</th>
     <th>Salary</th>
     <th>Day</th>
     <th>Month</th>
     <th>Year</th>
     <?php
-    while ($row = $result->fetch_assoc()) {
+    while ($salary_details = $result->fetch_assoc()) {
         echo "<tr>
-        <td>" . $row['id'] . "</td>
-        <td>" . $row["empName"] . "</td>
-        <td>" . $row["salary"] . "</td>
-        <td>" . $row["day"] . "</td>
-        <td>" . $row["month"] . "</td>
-        <td>" . $row["year"] . "</td>";
+        <td>" . $salary_details['id'] . "</td>
+        <td>" . $salary_details["empName"] . "</td>
+        <td>" . $salary_details["salary"] . "</td>
+        <td>" . $salary_details["day"] . "</td>
+        <td>" . $salary_details["month"] . "</td>
+        <td>" . $salary_details["year"] . "</td>";
         echo '<td width = 250>';
         echo "<b>";
 ?>
