@@ -1,4 +1,5 @@
 <?php
+Class validate {
 function validation($data)
 {
     $empName = $data['empName'];
@@ -38,7 +39,7 @@ function validation($data)
         $valid =false;
         
     }
-    if (empty($grossSalary) || !preg_match("/^0$|^[-]?[1-9][0-9]*$/", $grossSalary)) {
+    if (empty($grossSalary) || !preg_match("/^0$|^[-]?[1-9][0-9]*$/", $grossSalary) || ($grossSalary < ($deduction+$lop)) ) {
         $gsError = "Please enter the valid Gross Salary";
         $errMsgs['gross_salary'] = $gsError;
         $valid = false;
@@ -53,11 +54,9 @@ function validation($data)
         $errMsgs['lop'] = $lopError;
         $valid  = false;
     }
-    $resp = array(
-        "status" => $valid,
-        "message" => $errMsgs
-    );
+    $resp = array("status" => $valid,"message" => $errMsgs);
     return $resp;   
+}
 }
 ?> 
 

@@ -5,8 +5,8 @@ require 'dbOperation.php';
 require 'salary_validation.php';
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); 
 if (!empty($_GET['id'])) {
-    $readObj = new DBOperations();
-    $salary_details= $readObj->ReadRecord($_GET['id']);
+    $readObject = new DBOperations();
+    $salary_details= $readObject->ReadRecord($_GET['id']);
     $errorMsg = $resp['message'];
     $id = $salary_details['id'];  
     $empName = $salary_details['empName'];
@@ -18,7 +18,7 @@ if (!empty($_GET['id'])) {
     $resp = $ValueObj->validation($_POST);
     try {
         if($resp['status']){
-            $resp = $readObj->update_salary($_GET['id']);
+            $resp = $readObject->update_salary($_GET['id']);
             if($resp) {
                 header("location:salary_index.php");
             }

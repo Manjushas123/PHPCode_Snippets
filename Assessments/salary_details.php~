@@ -10,7 +10,7 @@ if (!empty($_GET['id'])) {
     $id = $_GET['id'];
 }
 if ($_POST) {
-    $empName = $POST['emp_name'];
+    //$empName = $POST['emp_name'];
     $id = $_POST['id'];     
     $salary = $_POST['salary'];
     $day =$_POST['day'];
@@ -34,7 +34,7 @@ if ($_POST) {
 ?>
 <html>
 <head>
-<title> Employee Details </title>
+<title> Salary Details </title>
 <style>
 .button {
     background-color: #fc0905;

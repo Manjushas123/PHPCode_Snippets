@@ -113,7 +113,6 @@ class DBOperations
         $netSalary = $calculation->calculation($data);
         $insert_query = "INSERT INTO employee_detail(empName,empId,designation,gender,experience,gross_salary,deduction,lop,netsal) VALUES('$empName',$empId,
         '$designation','$gender',$experience,$grossSalary,$deduction,$lop,$netSalary)";
-        
         if (mysqli_query($this->conn, $insert_query)) {
             return true;
         } else if (!mysqli_query($this->conn, $insert_query)) {
@@ -149,7 +148,7 @@ class DBOperations
         $year = $_POST['year'];
         $errorMessage = "";
         $update_query = "UPDATE  salary_details SET salary = $salary, day = $day, month = $month, year= $year WHERE id = $id";
-        $result       = $this->conn->query($update_query);
+        $result = $this->conn->query($update_query);
         if ($result) {
             return true;
         } else {

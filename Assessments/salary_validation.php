@@ -3,13 +3,12 @@ Class validate {
 function validation($data)
 {
     $empName = $data['empName'];
-    $salary =$data['salary'];
-    $day =$data['day'];
-    $month =$data['month'];
-    $year =$data['year'];
+    $salary = $data['salary'];
+    $day = $data['day'];
+    $month = $data['month'];
+    $year = $data['year'];
     $valid  = true;
     $errMsgs = array();
-
     if (empty($salary) || !preg_match("/^0$|^[-]?[1-9][0-9]*$/", $salary) ) {
         $salaryError = "Please enter the valid Salary";
         $errMsgs['salary'] = $salaryError;

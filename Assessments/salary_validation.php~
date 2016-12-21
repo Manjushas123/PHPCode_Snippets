@@ -19,8 +19,7 @@ function validation($data)
         $errMsgs['day'] = $dayError;
         $valid = false;
     }
-   
-    if (empty($month) || !preg_match("/^0$|^[-]?[1-9][0-9]*$/", $month)) {
+    if (empty($month) || !preg_match("/^0$|^[-]?[1-9][0-9]*$/", $month) || $month >12 ) {
         $monthError = "Please enter the valid month";
         $errMsgs['month'] = $monthError;
         $valid =false;
@@ -31,9 +30,9 @@ function validation($data)
         $errMsgs['year'] = $yearError;
         $valid = false;
     }
-    
     $resp = array("status" => $valid,"message" => $errMsgs);
     return $resp;   
 }
 }
 ?> 
+

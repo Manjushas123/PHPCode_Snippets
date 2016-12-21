@@ -4,24 +4,23 @@ require 'dbOperation.php';
 require 'salary_validation.php';
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); 
 if (!empty($_GET['id'])) {
-    $readObj = new DBOperations();
-    $row= $readObj->ReadRecord($_GET['id']);
-    $empName = $row['empName'];
+    $readObject = new DBOperations();
+    $read_record = $readObject ->ReadRecord($_GET['id']);
+    $empName = $read_record['empName'];
     $id = $_GET['id'];
 }
 if ($_POST) {
-    $empName = $POST['emp_name'];
     $id = $_POST['id'];     
     $salary = $_POST['salary'];
     $day =$_POST['day'];
     $month = $_POST['month'];
     $year = $_POST['year'];
-    $ValueObj = new validate();
-    $resp = $ValueObj->validation($_POST);
+    $ValidObject = new validate();
+    $resp = $ValidObject->validation($_POST);
     $errorMsg = $resp['message'];
     try {
         if ($resp['status']) {
-            $resp = $readObj->createSalaryRecord($_POST);
+            $resp = $readObject ->createSalaryRecord($_POST);
             if ($resp) {
                 echo "records inserted successfully";
             }
@@ -34,7 +33,7 @@ if ($_POST) {
 ?>
 <html>
 <head>
-<title> Employee Details </title>
+<title> Salary Details </title>
 <style>
 .button {
     background-color: #fc0905;

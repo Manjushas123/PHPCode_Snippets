@@ -49,7 +49,6 @@ if ($result->num_rows > 0) {
         <td>".$employee_details["deduction"]."</td>
         <td>".$employee_details["lop"]."</td>
         <td>".$employee_details["netsal"]."</td>";
-
         echo '<td width = 250>';
         echo "<b>";
         ?>
