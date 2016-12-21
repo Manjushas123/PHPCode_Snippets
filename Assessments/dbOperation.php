@@ -49,7 +49,7 @@ class DBOperations
     public function ReadRecordByRow($id)
     {
         $read_query = "SELECT * from employee_detail e LEFT OUTER JOIN salary_details el on e.id = el.id where e.id = {$id}";
-        $result     = $this->conn->query($read_query);
+        $result = $this->conn->query($read_query);
         ?>
         <a href = "index.php">Back </a>
         <h3> Salary Details </h3>
@@ -89,13 +89,13 @@ class DBOperations
     public function ListEmployee()
     {
         $view_query = "SELECT * FROM employee_detail";
-        $resultset  = $this->conn->query($view_query);
+        $resultset = $this->conn->query($view_query);
         return $resultset;
     }
     public function ListSalary()
     {
         $view_query = "SELECT * FROM salary_details";
-        $result_salary  = $this->conn->query($view_query);
+        $result_salary = $this->conn->query($view_query);
         return $result_salary;
     }
     public function createRecord($data)
@@ -149,7 +149,7 @@ class DBOperations
         $year = $_POST['year'];
         $errorMessage = "";
         $update_query = "UPDATE  salary_details SET salary = $salary, day = $day, month = $month, year= $year WHERE id = $id";
-        $result       = $this->conn->query($update_query);
+        $result = $this->conn->query($update_query);
         if ($result) {
             return true;
         } else {
