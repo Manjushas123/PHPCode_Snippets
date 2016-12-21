@@ -42,9 +42,9 @@ class DBOperations
     public function ReadRecord($id)
     {
         $read_query = "SELECT * from employee_detail e LEFT OUTER JOIN salary_details el on e.id = el.id where e.id = {$id}";
-        $result     = $this->conn->query($read_query);
-        $row = $result->fetch_assoc();
-        return $row;
+        $result = $this->conn->query($read_query);
+        $employee_detail = $result->fetch_assoc();
+        return $employee_detail;
     }
     public function ReadRecordByRow($id)
     {
@@ -95,8 +95,8 @@ class DBOperations
     public function ListSalary()
     {
         $view_query = "SELECT * FROM salary_details";
-        $resultset  = $this->conn->query($view_query);
-        return $resultset;
+        $result_salary  = $this->conn->query($view_query);
+        return $result_salary;
     }
     public function createRecord($data)
     {
@@ -131,10 +131,10 @@ class DBOperations
         $deduction = $_POST['deduction'];
         $lop = $_POST['lop'];
         $errorMessage = "";
-        $calculation  = new calculate();
-        $netSalary    = $calculation->calculation($_POST);
+        $calculation = new calculate();
+        $netSalary = $calculation->calculation($_POST);
         $result_query = "UPDATE  employee_detail SET empName = '$empName', empId = $empId, designation = '$designation',gender = '$gender',experience = $experience,gross_salary = $grossSalary,deduction = $deduction,lop = $lop,netsal = $netSalary WHERE id = $id";
-        $result       = $this->conn->query($result_query);
+        $result = $this->conn->query($result_query);
         if ($result) {
             return true;
         } else {
@@ -149,9 +149,6 @@ class DBOperations
         $year = $_POST['year'];
         $errorMessage = "";
         $update_query = "UPDATE  salary_details SET salary = $salary, day = $day, month = $month, year= $year WHERE id = $id";
-        //print($update_query);
-        //exit;
-
         $result       = $this->conn->query($update_query);
         if ($result) {
             return true;
