@@ -6,14 +6,14 @@ require 'salary_validation.php';
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); 
 if (!empty($_GET['id'])) {
     $readObj = new DBOperations();
-    $row= $readObj->ReadRecord($_GET['id']);
+    $salary_details= $readObj->ReadRecord($_GET['id']);
     $errorMsg = $resp['message'];
-    $id = $_row['id'];  
-    $empName = $row['empName'];
-    $salary = $row['salary'];
-    $day = $row['day'];
-    $month= $row['month'];
-    $year = $row['year'];
+    $id = $salary_details['id'];  
+    $empName = $salary_details['empName'];
+    $salary = $salary_details['salary'];
+    $day = $salary_details['day'];
+    $month= $salary_details['month'];
+    $year = $salary_details['year'];
     $ValueObj = new validate();
     $resp = $ValueObj->validation($_POST);
     try {
