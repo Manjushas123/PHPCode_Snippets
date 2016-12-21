@@ -6,7 +6,7 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 $DbObj = new DBOperations();
 if ( !empty($_GET['id'])) {
     try {
-        $response_of_Delete = $DbObj->Delete($_GET['id']);
+        $response_of_Delete = $DbObj->DeleteEmployee($_GET['id']);
     }
     catch (mysqli_sql_exception $e) {
         echo $e->getMessage();
@@ -18,9 +18,7 @@ if (isset($_SESSION['success'])) {
     echo "</p>";
     unset($_SESSION['success']);
 }
-$result = $DbObj->ListStudents();
-//$sql = "SELECT * FROM employee_detail";
-//$result = $conn->query($sql);
+$result = $DbObj->ListEmployee();
 if ($result->num_rows > 0) {
     ?>
     <html>
@@ -57,7 +55,6 @@ if ($result->num_rows > 0) {
         ?>
         <td width=250>
         <a href="viewObject.php?id=<?php echo $row['id'] ?>">Read</a>
-        <a href="index.php?id=<?php echo $row['id'] ?>">Delete</a>
         <a href="edit_records.php?id=<?php echo $row['id'] ?>">Edit</a>
         <a href="salary_details.php?id=<?php echo $row['id'] ?>">Salary </a>
         </td>
