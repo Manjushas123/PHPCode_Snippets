@@ -58,11 +58,6 @@ class DBOperations
         <?php
         foreach ($result as $value) {
             echo "<tr>";
-            echo "<th> Employee Name</th>";
-            echo "<td>";
-            echo $value['empName'];
-            echo "</td>";
-            echo "</tr>";
             echo "<th> Salary </th>";
             echo "<td>";
             echo $value['salary'];
