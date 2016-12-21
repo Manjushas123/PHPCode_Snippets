@@ -57,8 +57,12 @@ class DBOperations
 
         <?php
         foreach ($result as $value) {
-            
             echo "<tr>";
+            echo "<th> Employee Name</th>";
+            echo "<td>";
+            echo $value['empName'];
+            echo "</td>";
+            echo "</tr>";
             echo "<th> Salary </th>";
             echo "<td>";
             echo $value['salary'];
@@ -87,7 +91,7 @@ class DBOperations
     </table>
     <?php
     }
-    public function ListStudents()
+    public function ListEmployee()
     {
         $view_query = "SELECT * FROM employee_detail";
         $resultset  = $this->conn->query($view_query);
@@ -101,17 +105,17 @@ class DBOperations
     }
     public function createRecord($data)
     {
-        $empName      = $data['empName'];
-        $empId        = $data['empId'];
-        $designation  = $data['designation'];
-        $gender       = $data['gender'];
-        $experience   = $data['experience'];
-        $grossSalary  = $data['gross_salary'];
-        $deduction    = $data['deduction'];
-        $lop          = $data['lop'];
+        $empName = $data['empName'];
+        $empId = $data['empId'];
+        $designation = $data['designation'];
+        $gender = $data['gender'];
+        $experience = $data['experience'];
+        $grossSalary = $data['gross_salary'];
+        $deduction = $data['deduction'];
+        $lop = $data['lop'];
         $errorMessage = "";
-        $calculation  = new calculate();
-        $netSalary    = $calculation->calculation($data);
+        $calculation = new calculate();
+        $netSalary = $calculation->calculation($data);
         $insert_query = "INSERT INTO employee_detail(empName,empId,designation,gender,experience,gross_salary,deduction,lop,netsal) VALUES('$empName',$empId,
         '$designation','$gender',$experience,$grossSalary,$deduction,$lop,$netSalary)";
         
@@ -123,14 +127,14 @@ class DBOperations
     }
     public function update($id)
     {
-        $empName      = $_POST['empName'];
-        $empId        = $_POST['empId'];
-        $designation  = $_POST['designation'];
-        $gender       = $_POST['gender'];
-        $experience   = $_POST['experience'];
-        $grossSalary  = $_POST['gross_salary'];
-        $deduction    = $_POST['deduction'];
-        $lop          = $_POST['lop'];
+        $empName = $_POST['empName'];
+        $empId = $_POST['empId'];
+        $designation = $_POST['designation'];
+        $gender = $_POST['gender'];
+        $experience = $_POST['experience'];
+        $grossSalary = $_POST['gross_salary'];
+        $deduction = $_POST['deduction'];
+        $lop = $_POST['lop'];
         $errorMessage = "";
         $calculation  = new calculate();
         $netSalary    = $calculation->calculation($_POST);
@@ -142,19 +146,35 @@ class DBOperations
             return false;
         }
     }
+    public function update_salary($id)
+    {
+        $salary = $_POST['salary'];
+        $day = $_POST['day'];
+        $month = $_POST['month'];
+        $year = $_POST['year'];
+        $errorMessage = "";
+        $update_query = "UPDATE  salary_details SET salary = $salary, day = $day, month = $month, year= $year WHERE id = $id";
+        //print($update_query);
+        //exit;
+
+        $result       = $this->conn->query($update_query);
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     public function createSalaryRecord($data)
     {
-        //echo "hii";
-        $id          = $data['id'];
-        $empName     = $data['empName'];
-        $salary      = $data['salary'];
-        $day         = $data['day'];
-        $month       = $data['month'];
-        $year        = $data['year'];
-        $insertQuery = "INSERT INTO salary_details(id,empName,salary,day,month,year) VALUES($id,'$empName',$salary,
+        $id = $data['id'];
+        $empName = $data['empName'];
+        $salary = $data['salary'];
+        $day = $data['day'];
+        $month = $data['month'];
+        $year = $data['year'];
+        $insertQuery = "INSERT INTO salary_details(id,salary,day,month,year) VALUES($id,$salary,
         $day,$month,$year)";
-        //print($insertQuery);
-        $result      = $this->conn->query($insertQuery);
+        $result = $this->conn->query($insertQuery);
         if ($result) {
             return true;
         } else {
