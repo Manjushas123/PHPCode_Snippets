@@ -6,24 +6,23 @@ require 'dbOperation.php';
 require 'validation.php';
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); 
 if (!empty($_GET['id'])) {
-    $readObj = new DBOperations();
-    $row= $readObj->ReadRecord($_GET['id']);
+    $readObject = new DBOperations();
+    $employee_details= $readObject->ReadRecord($_GET['id']);
     $errorMsg = $resp['message'];
-    $empName = $row['empName'];
-    $empId = $row['empId'];
-    $designation = $row['designation'];
-    $gender = $row['gender'];
-    $experience = $row['experience'];
-    $grossSalary = $row['gross_salary'];
-    $deduction = $row['deduction'];
-    $lop = $row['lop'];
-    $netSalary = $row['netsal'];
+    $empName = $employee_details['empName'];
+    $empId = $employee_details['empId'];
+    $designation = $employee_details['designation'];
+    $gender = $employee_details['gender'];
+    $experience = $employee_details['experience'];
+    $grossSalary = $employee_details['gross_salary'];
+    $deduction = $employee_details['deduction'];
+    $lop = $employee_details['lop'];
+    $netSalary = $remployee_detailsow['netsal'];
     $ValueObj = new validate();
     $resp = $ValueObj->validation($_POST);
-   // $errorMsg = $resp['message'];
     try {
         if($resp['status']){
-            $resp = $readObj->update($_GET['id']);
+            $resp = $readObject->update($_GET['id']);
             if($resp) {
                 $_SESSION['success'] = 1;
                 header("location:index.php");
