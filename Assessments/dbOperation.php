@@ -27,6 +27,7 @@ class DBOperations
             return mysqli_error($this->conn);
         }
     }
+
     public function DeleteSalary($id)
     {
         $delete_query = "DELETE from salary_details where id= {$id}";
@@ -35,10 +36,10 @@ class DBOperations
         $result = $this->conn->query($delete_query);
         if ($result === true) {
             return true;
-        } else {
+        } 
             return mysqli_error($this->conn);
         }
-    }
+    
     public function ReadRecord($id)
     {
         $read_query = "SELECT * from employee_detail e LEFT OUTER JOIN salary_details el on e.id = el.id where e.id = {$id}";

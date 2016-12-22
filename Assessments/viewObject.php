@@ -13,6 +13,10 @@ if (!empty($_GET['id'])) {
     $deduction = $employee_details['deduction'];
     $lop = $employee_details['lop'];
     $netSalary = $employee_details['netsal'];
+    $salary = $employee_details['salary'];
+    $day = $employee_details['day'];
+    $month = $employee_details['month'];
+    $year = $employee_details['year'];
     echo "<h3> Employee Details </h3>";
     echo "<table border =5px>";
     echo "<p align =center>";
@@ -69,5 +73,12 @@ if (!empty($_GET['id'])) {
     echo "</td>";
     echo "</tr>";
     echo "</table>";
+    echo "<tr>";
+    echo "<th>Salary </th>";
+    echo "<td>";
+    $array = array($salary,$day,$month,$year);
+    foreach ( $array as $value) {
+        echo $value;
+    }
 }
 ?> 

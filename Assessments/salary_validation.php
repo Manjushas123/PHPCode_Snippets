@@ -22,8 +22,7 @@ function validation($data)
     if (empty($month) || !preg_match("/^0$|^[-]?[1-9][0-9]*$/", $month) || $month >12 ) {
         $monthError = "Please enter the valid month";
         $errMsgs['month'] = $monthError;
-        $valid =false;
-        
+        $valid =false;    
     }
     if (empty($year) || !preg_match("/^0$|^[-]?[1-9][0-9]*$/", $year) ) {
         $yearError = "Please enter the valid year";
