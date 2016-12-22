@@ -18,8 +18,6 @@ class DBOperations
     public function DeleteEmployee($id)
     {
         $delete_query = "delete from employee_detail where id= {$id}";
-        echo $delete_query;
-        
         $result = $this->conn->query($delete_query);
         if ($result === true) {
             return true;
@@ -29,8 +27,6 @@ class DBOperations
     public function DeleteSalary($id)
     {
         $delete_query = "DELETE from salary_details where id= {$id}";
-        echo $delete_query;
-        
         $result = $this->conn->query($delete_query);
         if ($result === true) {
             return true;
