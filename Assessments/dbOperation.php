@@ -51,41 +51,9 @@ class DBOperations
     {
         $read_query = "SELECT * from employee_detail e LEFT OUTER JOIN salary_details el on e.id = el.id where e.id = {$id}";
         $result     = $this->conn->query($read_query);
-        ?>
-        <a href = "index.php">Back </a>
-        <h3> Salary Details </h3>
-        <table border =5px>
-
-        <?php
-        foreach ($result as $value) {
-            echo "<tr>";
-            echo "<th> Salary </th>";
-            echo "<td>";
-            echo $value['salary'];
-            echo "</td>";
-            echo "</tr>";
-            echo "<tr>";
-            echo "<th>Day </th>";
-            echo "<td>";
-            echo $value['day'];
-            echo "</td>";
-            echo "</tr>";
-            echo "<tr>";
-            echo "<th>Month </th>";
-            echo "<td>";
-            echo $value['month'];
-            echo "</td>";
-            echo "</tr>";
-            echo "<tr>";
-            echo "<th>Year</th>";
-            echo "<td>";
-            echo $value['year'];
-            echo "</td>";
-            echo "</tr>";
-        }
-    ?>
-    </table>
-    <?php
+        //$salary_details = $result->fetch_assoc
+        return $result;
+        
     }
     public function ListEmployee()
     {

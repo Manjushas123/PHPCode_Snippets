@@ -2,7 +2,7 @@
 require "dbOperation.php";
 if (!empty($_GET['id'])) {
     $readObj = new DBOperations();
-    $value = $readObj->ReadRecordByRow($_GET['id']);
+    $salary_details = $readObj->ReadRecordByRow($_GET['id']);
     $employee_details = $readObj->ReadRecord($_GET['id']);
     $empName = $employee_details['empName'];
     $empId = $employee_details['empId'];
@@ -13,10 +13,6 @@ if (!empty($_GET['id'])) {
     $deduction = $employee_details['deduction'];
     $lop = $employee_details['lop'];
     $netSalary = $employee_details['netsal'];
-    $salary = $employee_details['salary'];
-    $day = $employee_details['day'];
-    $month = $employee_details['month'];
-    $year = $employee_details['year'];
     echo "<h3> Employee Details </h3>";
     echo "<table border =5px>";
     echo "<p align =center>";
@@ -73,12 +69,33 @@ if (!empty($_GET['id'])) {
     echo "</td>";
     echo "</tr>";
     echo "</table>";
-    echo "<tr>";
-    echo "<th>Salary </th>";
-    echo "<td>";
-    $array = array($salary,$day,$month,$year);
-    foreach ( $array as $value) {
-        echo $value;
-    }
+    echo "<table border =5px>";
+    echo "<h1> Salary Details </h1>";
+    foreach ($salary_details as $value)
+        echo "<tr>";
+        echo "<th> Salary </th>";
+        echo "<td>";
+        echo $value['salary'];
+        echo "</td>";
+        echo "</tr>";
+        echo "<tr>";
+        echo "<th> Day </th>";
+        echo "<td>";
+        echo $value['day'];
+        echo "</td>";
+        echo "</tr>";
+        echo "<tr>";
+        echo "<th> Month </th>";
+        echo "<td>";
+        echo $value['month'];
+        echo "</td>";
+        echo "</tr>";
+        echo "<tr>";
+        echo "<th> Year</th>";
+        echo "<td>";
+        echo $value['year']; 
+        echo "</td>";
+        echo "</tr>";
+}
 }
 ?> 
