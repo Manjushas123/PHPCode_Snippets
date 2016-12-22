@@ -76,29 +76,29 @@ if (!empty($_GET['id'])) {
     <?php
     echo "<table border =5px>";
     echo "<h1> Salary Details </h1>";
-    foreach ($salary_details as $value) {
+    foreach ($salary_details as $salary_detail_employee) {
         echo "<tr>";
         echo "<th> Salary </th>";
         echo "<td>";
-        echo $value['salary'];
+        echo $salary_detail_employee['salary'];
         echo "</td>";
         echo "</tr>";
         echo "<tr>";
         echo "<th> Day </th>";
         echo "<td>";
-        echo $value['day'];
+        echo $salary_detail_employee['day'];
         echo "</td>";
         echo "</tr>";
         echo "<tr>";
         echo "<th> Month </th>";
         echo "<td>";
-        echo $value['month'];
+        echo $salary_detail_employee['month'];
         echo "</td>";
         echo "</tr>";
         echo "<tr>";
         echo "<th> Year</th>";
         echo "<td>";
-        echo $value['year']; 
+        echo $salary_detail_employee['year'];
         echo "</td>";
         echo "</tr>";
     }
