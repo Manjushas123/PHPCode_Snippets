@@ -13,6 +13,9 @@ if (!empty($_GET['id'])) {
     $deduction = $employee_details['deduction'];
     $lop = $employee_details['lop'];
     $netSalary = $employee_details['netsal'];
+    ?>
+    <a href = "index.php">Back </a>
+    <?php
     echo "<h3> Employee Details </h3>";
     echo "<table border =5px>";
     echo "<p align =center>";
@@ -69,9 +72,11 @@ if (!empty($_GET['id'])) {
     echo "</td>";
     echo "</tr>";
     echo "</table>";
+    ?>
+    <?php
     echo "<table border =5px>";
     echo "<h1> Salary Details </h1>";
-    foreach ($salary_details as $value)
+    foreach ($salary_details as $value) {
         echo "<tr>";
         echo "<th> Salary </th>";
         echo "<td>";
@@ -96,6 +101,6 @@ if (!empty($_GET['id'])) {
         echo $value['year']; 
         echo "</td>";
         echo "</tr>";
-}
+    }
 }
 ?> 

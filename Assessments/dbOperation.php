@@ -23,11 +23,9 @@ class DBOperations
         $result = $this->conn->query($delete_query);
         if ($result === true) {
             return true;
-        } else {
+        } 
             return mysqli_error($this->conn);
-        }
     }
-
     public function DeleteSalary($id)
     {
         $delete_query = "DELETE from salary_details where id= {$id}";
@@ -38,8 +36,7 @@ class DBOperations
             return true;
         } 
             return mysqli_error($this->conn);
-        }
-    
+    }
     public function ReadRecord($id)
     {
         $read_query = "SELECT * from employee_detail e LEFT OUTER JOIN salary_details el on e.id = el.id where e.id = {$id}";
@@ -51,9 +48,7 @@ class DBOperations
     {
         $read_query = "SELECT * from employee_detail e LEFT OUTER JOIN salary_details el on e.id = el.id where e.id = {$id}";
         $result     = $this->conn->query($read_query);
-        //$salary_details = $result->fetch_assoc
         return $result;
-        
     }
     public function ListEmployee()
     {
@@ -120,9 +115,8 @@ class DBOperations
         $result = $this->conn->query($update_query);
         if ($result) {
             return true;
-        } else {
+        } 
             return false;
-        }
     }
     public function createSalaryRecord($data)
     {
@@ -137,9 +131,8 @@ class DBOperations
         $result = $this->conn->query($insertQuery);
         if ($result) {
             return true;
-        } else {
-            return false;
         }
+            return false;
     }
 }
 ?> 
