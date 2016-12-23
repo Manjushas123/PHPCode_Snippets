@@ -43,8 +43,8 @@ class DBOperations
     public function ReadRecordByRow($id)
     {
         $read_query = "SELECT * from employee_detail e LEFT OUTER JOIN salary_details el on e.id = el.id where e.id = {$id}";
-        $result     = $this->conn->query($read_query);
-        return $result;
+        $result_read = $this->conn->query($read_query);
+        return $result_read;
     }
     public function ListEmployee()
     {

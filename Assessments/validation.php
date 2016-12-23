@@ -30,8 +30,7 @@ function validation($data)
     if (empty($gender)) {
         $genderError = "Please enter the Gender";
         $errMsgs['gender'] = $genderError;
-        $valid = false;
-        
+        $valid = false;   
     }
     if (empty($experience) || !preg_match("/^0$|^[-]?[1-9][0-9]*$/", $experience)) {
         $experienceError = "Please enter the valid Experience";

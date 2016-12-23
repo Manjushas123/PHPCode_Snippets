@@ -14,7 +14,7 @@ if ( !empty($_GET['id'])) {
 }
 if (isset($_SESSION['success'])) {
     echo "<p align = center>";
-    echo "Record inserted into database successfully!";
+    echo "Record updated successfully!";
     echo "</p>";
     unset($_SESSION['success']);
 }
