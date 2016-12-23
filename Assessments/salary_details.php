@@ -1,4 +1,5 @@
 <?php
+ob_start();
 require 'dbconfig.php';
 require 'dbOperation.php';
 require 'salary_validation.php';
@@ -22,7 +23,7 @@ if ($_POST) {
         if ($resp['status']) {
             $resp = $readObject ->createSalaryRecord($_POST);
             if ($resp) {
-                echo "records inserted successfully";
+                header("location:salary_index.php");
             }
         }
     }
