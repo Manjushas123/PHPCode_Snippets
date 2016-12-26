@@ -8,6 +8,7 @@ class DBOperations
     private $db_name = 'mytodo';
     private $conn;
     private $resp;
+    
     public function __construct()
     {
         $this->conn = mysqli_connect($this->db_hostname, $this->db_username, $this->db_password, $this->db_name);
@@ -15,6 +16,7 @@ class DBOperations
             die("Unable to connect database" . mysqli_error($this->conn));
         }
     }
+    
     public function DeleteEmployee($id)
     {
         $delete_query = "delete from employee_detail where id= {$id}";
@@ -24,6 +26,7 @@ class DBOperations
         } 
             return mysqli_error($this->conn);
     }
+    
     public function DeleteSalary($id)
     {
         $delete_query = "DELETE from salary_details where id= {$id}";
@@ -33,6 +36,7 @@ class DBOperations
         } 
             return mysqli_error($this->conn);
     }
+
     public function ReadRecord($id)
     {
         $read_query = "SELECT * from employee_detail e LEFT OUTER JOIN salary_details el on e.id = el.id where e.id = {$id}";
@@ -40,24 +44,28 @@ class DBOperations
         $employee_detail = $result->fetch_assoc();
         return $employee_detail;
     }
+
     public function ReadRecordByRow($id)
     {
         $read_query = "SELECT * from employee_detail e LEFT OUTER JOIN salary_details el on e.id = el.id where e.id = {$id}";
         $result_read = $this->conn->query($read_query);
         return $result_read;
     }
+
     public function ListEmployee()
     {
         $view_query = "SELECT * FROM employee_detail";
         $result_employee  = $this->conn->query($view_query);
         return $result_employee;
     }
+
     public function ListSalary()
     {
         $view_query = "SELECT * FROM salary_details";
         $result_salary  = $this->conn->query($view_query);
         return $result_salary;
     }
+
     public function createRecord($data)
     {
         $empName = $data['empName'];
@@ -78,6 +86,7 @@ class DBOperations
         } 
             return false;
     }
+
     public function update($id)
     {
         $empName = $_POST['empName'];
@@ -98,6 +107,7 @@ class DBOperations
         } 
             return false;
     }
+
     public function update_salary($id)
     {
         $salary = $_POST['salary'];
@@ -112,6 +122,7 @@ class DBOperations
         } 
             return false;
     }
+
     public function createSalaryRecord($data)
     {
         $id = $data['id'];
@@ -128,5 +139,6 @@ class DBOperations
         }
             return false;
     }
+    
 }
 ?> 
