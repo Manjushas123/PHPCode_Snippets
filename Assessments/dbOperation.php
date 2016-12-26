@@ -75,9 +75,8 @@ class DBOperations
         '$designation','$gender',$experience,$grossSalary,$deduction,$lop,$netSalary)";
         if (mysqli_query($this->conn, $insert_query)) {
             return true;
-        } else if (!mysqli_query($this->conn, $insert_query)) {
+        } 
             return false;
-        }
     }
     public function update($id)
     {
@@ -96,9 +95,8 @@ class DBOperations
         $result = $this->conn->query($result_query);
         if ($result) {
             return true;
-        } else {
+        } 
             return false;
-        }
     }
     public function update_salary($id)
     {

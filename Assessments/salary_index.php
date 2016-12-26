@@ -6,7 +6,6 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 $DbObject = new DBOperations();
 if (!empty($_GET['id'])) {
     try {
-
         $response_of_delete_salary = $DbObject->DeleteSalary($_GET['id']);
         $response_of_delete_employee = $DbObject->DeleteEmployee($_GET['id']);
     }

@@ -3,10 +3,10 @@ session_start();
 require "dbconfig.php";
 require "dbOperation.php";
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); 
-$DbObj = new DBOperations();
+$DbObject = new DBOperations();
 if ( !empty($_GET['id'])) {
     try {
-        $response_of_Delete = $DbObj->DeleteEmployee($_GET['id']);
+        $response_of_Delete = $DbObject->DeleteEmployee($_GET['id']);
     }
     catch (mysqli_sql_exception $e) {
         echo $e->getMessage();
@@ -18,7 +18,7 @@ if (isset($_SESSION['success'])) {
     echo "</p>";
     unset($_SESSION['success']);
 }
-$result = $DbObj->ListEmployee();
+$result = $DbObject->ListEmployee();
 if ($result->num_rows > 0) {
     ?>
     <html>

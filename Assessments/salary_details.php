@@ -13,7 +13,7 @@ if (!empty($_GET['id'])) {
 if ($_POST) {
     $id = $_POST['id'];     
     $salary = $_POST['salary'];
-    $day =$_POST['day'];
+    $day = $_POST['day'];
     $month = $_POST['month'];
     $year = $_POST['year'];
     $ValidObject = new validate();
