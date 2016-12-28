@@ -133,7 +133,6 @@ class DBOperations
         $year = $data['year'];
         $insertQuery = "INSERT INTO salary_details(id,salary,day,month,year) VALUES($id,$salary,
         $day,$month,$year)";
-        //print($insertQuery);
         $result = $this->conn->query($insertQuery);
         if ($result) {
             return true;

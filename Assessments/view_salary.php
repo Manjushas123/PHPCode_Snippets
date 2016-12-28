@@ -25,7 +25,7 @@
 <tr> <th> Employee Name </th> <td> <input id = "text" name = "empName"  value="<?php
 echo $empName;
 ?>" /> <?php
-echo (!empty($errorMsg['empName']) ? $errorMsg['empName'] : '');
+echo (!empty($errorMsg) ? $errorMsg['empName'] : '');
 ?></td></tr>
 <tr> <th> Salary </th> <td><input id = "number" name = "salary"  value = "<?php
 echo $salary;

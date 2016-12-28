@@ -1,10 +1,12 @@
 <?php;
 ob_start();
-require 'view_employee.php';
+
 require 'dbOperation.php';
 require 'validation.php';
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); 
+
 if(isset($_POST['submit'])){
+
     $DbObj = new DBOperations();
     $ValueObj = new validate();
     $empName = $_POST['empName'];
@@ -17,6 +19,7 @@ if(isset($_POST['submit'])){
     $lop = $_POST['lop'];
     $resp = $ValueObj->validation($_POST);
     $errorMsg = $resp['message'];
+    //print($errorMsg);
     try {
         if ($resp['status']) {
             $resp = $DbObj->createRecord($_POST);
@@ -29,4 +32,6 @@ if(isset($_POST['submit'])){
         echo $e->getMessage();
     } 
 }
+
+require 'view_employee.php';
 ?>

@@ -16,64 +16,6 @@ if (!empty($_GET['id'])) {
     ?>
     <a href = "index.php">Back </a>
     <?php
-    echo "<h3> Employee Details </h3>";
-    echo "<table border =5px>";
-    echo "<p align =center>";
-    echo "<tr>";
-    echo "<th>Employee Name</th>";
-    echo "<td>";
-    echo $empName;
-    echo "</td>";
-    echo "</tr>";
-    echo "<tr>";
-    echo "<th>Employee ID </th>";
-    echo "<td>";
-    echo $empId;
-    echo "</td>";
-    echo "</tr>";
-    echo "<tr>";
-    echo "<th>Designation </th>";
-    echo "<td>";
-    echo $designation;
-    echo "</td>";
-    echo "</tr>";
-    echo "<tr>";
-    echo "<th>Gender </th>";
-    echo "<td>";
-    echo $gender;
-    echo "</td>";
-    echo "</tr>";
-    echo "<tr>";
-    echo "<th> Experience </th>";
-    echo "<td>";
-    echo $experience;
-    echo "</td>";
-    echo "</tr>";
-    echo "<th> Gross Salary </th>";
-    echo "<td>";
-    echo $grossSalary;
-    echo "</td>";
-    echo "</tr>";
-    echo "<th>Deduction</th>";
-    echo "<td>";
-    echo $deduction;
-    echo "</td>";
-    echo "</tr>";
-    echo "<tr>";
-    echo "<th>LOP</th>";
-    echo "<td>";
-    echo $lop;
-    echo "<td/>";
-    echo "</tr>";
-    echo "<tr>";
-    echo "<th>Net Salary </th>";
-    echo "<td>";
-    echo $netSalary;
-    echo "</td>";
-    echo "</tr>";
-    echo "</table>";
-    ?>
-    <?php
     echo "<table border =5px>";
     echo "<h1> Salary Details </h1>";
     foreach ($salary_details as $salary_detail_employee) {
@@ -103,4 +45,5 @@ if (!empty($_GET['id'])) {
         echo "</tr>";
     }
 }
+require 'view_object.php';
 ?> 
