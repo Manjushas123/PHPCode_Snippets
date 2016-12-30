@@ -20,6 +20,7 @@ class DBOperations
     public function DeleteEmployee($id)
     {
         $delete_query = "delete from employee_detail where id= {$id}";
+        //echo $delete_query;
         $result = $this->conn->query($delete_query);
         if ($result === true) {
             return true;
@@ -31,6 +32,7 @@ class DBOperations
     {
         $delete_query = "DELETE from salary_details where id= {$id}";
         $result = $this->conn->query($delete_query);
+        //echo  $delete_query;
         if ($result === true) {
             return true;
         } 
@@ -56,14 +58,22 @@ class DBOperations
     {
         $view_query = "SELECT * FROM employee_detail";
         $result_employee  = $this->conn->query($view_query);
-        return $result_employee;
+        $empList = array();
+        while ($employee_details = $result_employee->fetch_assoc()) { 
+            $empList[] = $employee_details;
+        }    
+        return $empList;
     }
 
     public function ListSalary()
     {
         $view_query = "SELECT * FROM salary_details";
         $result_salary  = $this->conn->query($view_query);
-        return $result_salary;
+        $salaryList = array();
+        while ($salary_details = $result_salary->fetch_assoc())  {
+           $salaryList[] = $salary_details;
+        }
+        return $salaryList;
     }
 
     public function createRecord($data)
@@ -82,6 +92,22 @@ class DBOperations
         $insert_query = "INSERT INTO employee_detail(empName,empId,designation,gender,experience,gross_salary,deduction,lop,netsal) VALUES('$empName',$empId,
         '$designation','$gender',$experience,$grossSalary,$deduction,$lop,$netSalary)";
         if (mysqli_query($this->conn, $insert_query)) {
+            return true;
+        } 
+            return false;
+    }
+    public function createSalaryRecord($data)
+    {   $id = $_GET['id']; 
+        $id = $data['id'];
+        $empName = $data['empName'];
+        $salary = $data['salary'];
+        $day = $data['day'];
+        $month = $data['month'];
+        $year = $data['year'];
+        $insertQuery = "INSERT INTO salary_details(id,salary,day,month,year) VALUES( $id ,$salary,
+        $day,$month,$year)";
+        print($insertQuery);
+        if (mysqli_query($this->conn, $insertQuery)) {
             return true;
         } 
             return false;
@@ -123,22 +149,7 @@ class DBOperations
             return false;
     }
 
-    public function createSalaryRecord($data)
-    {
-        $id = $data['id'];
-        $empName = $data['empName'];
-        $salary = $data['salary'];
-        $day = $data['day'];
-        $month = $data['month'];
-        $year = $data['year'];
-        $insertQuery = "INSERT INTO salary_details(id,salary,day,month,year) VALUES($id,$salary,
-        $day,$month,$year)";
-        $result = $this->conn->query($insertQuery);
-        if ($result) {
-            return true;
-        }
-            return false;
-    }
+
     
 }
 ?> 

@@ -1,6 +1,5 @@
 <?php;
 ob_start();
-
 require 'dbOperation.php';
 require 'validation.php';
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); 

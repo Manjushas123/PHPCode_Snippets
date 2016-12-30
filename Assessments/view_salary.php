@@ -17,7 +17,7 @@
 </style>
 </head>
 <body bgcolor = #DEE2A3>
-<form method = "post" action= "">
+<form method = "post" action= "EmpController.php?act=addSalary">
 <input type="hidden" name="id" value="<?php echo $id ?>" />
 <table>
 <b><a href = "index.php">Go to the Index Page </a></b>
@@ -25,7 +25,7 @@
 <tr> <th> Employee Name </th> <td> <input id = "text" name = "empName"  value="<?php
 echo $empName;
 ?>" /> <?php
-echo (!empty($errorMsg) ? $errorMsg['empName'] : '');
+echo (!empty($errorMsg['empName']) ? $errorMsg['empName'] : '');
 ?></td></tr>
 <tr> <th> Salary </th> <td><input id = "number" name = "salary"  value = "<?php
 echo $salary;

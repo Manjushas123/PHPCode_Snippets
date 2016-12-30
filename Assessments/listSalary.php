@@ -1,29 +1,4 @@
-<?php
-/*session_start();
-require "dbconfig.php";
-require "dbOperation.php";
-mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-$DbObject = new DBOperations();
-if (!empty($_GET['id'])) {
-    try {
-        $response_of_delete_salary = $DbObject->DeleteSalary($_GET['id']);
-        $response_of_delete_employee = $DbObject->DeleteEmployee($_GET['id']);
-    }
-    catch (mysqli_sql_exception $e) {
-        echo $e->getMessage();
-    }
-}
-if (isset($_SESSION['success'])) {
-    echo "<p align = center>";
-    echo "Record inserted into database successfully!";
-    echo "</p>";
-    unset($_SESSION['success']);
-}
-$result = $DbObject->ListSalary();
-if ($result->num_rows > 0) */
-    ?>
-
-   <html>
+    <html>
     <table>
     <body bgcolor = #DEE2A3>
     <tr>
@@ -44,9 +19,8 @@ if ($result->num_rows > 0) */
         echo "<b>";
 ?>
        <td>
-        <a href="salary_index.php?id=<?php
-        echo $salary_details['id'];
-?>">Delete</a>
+        
+<a href="EmpController.php?act=delete&id=<?php echo $salary_details['id'] ?>">Delete </a>
 <a href="edit_salary_records.php?id=<?php
         echo $salary_details['id'];
 ?>">Edit</a>
@@ -59,3 +33,4 @@ if ($result->num_rows > 0) */
     <h1 align = "center">Employee Salary</h1>
     </table>
     </body>
+   
