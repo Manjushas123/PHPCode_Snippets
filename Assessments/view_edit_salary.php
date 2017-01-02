@@ -17,7 +17,7 @@
 </style>
 </head>
 <body bgcolor = #DEE2A3>
-<form method = "post" action= "">
+<form method = "post" action= "EmpController.php?act=updateSalary">
 <input type="hidden" name="id" value="<?php echo $id ?>" />
 <table>
 <b><a href = "index.php">Go to the Index Page </a></b>

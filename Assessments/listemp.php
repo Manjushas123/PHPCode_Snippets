@@ -30,18 +30,18 @@
         echo "<b>";
         ?>
         <td width=250>
-        <a href="viewObject.php?id=<?php echo $employee_details['id'] ?>">Read</a>
-        <a href="edit_records.php?id=<?php echo $employee_details['id'] ?>">Edit</a>
+        <a href="EmpController.php?act=read&id=<?php echo $employee_details['id'] ?>">Read</a>
+
+        <a href="EmpController.php?act=updateEmpview&id=<?php echo $employee_details['id'] ?>">Edit </a>
         <a href="EmpController.php?act=addSalaryView&id=<?php echo $employee_details['id'] ?>">Salary </a>
         </td>
 <?php
 echo "<tr/>";
     }
     ?>
-    <b> <p align = "center" > <a href = "employee_form.php"> Return to the Create Page </a></p></b>
-     <b> <p align = "center" > <a href = "salary_index.php"> Salary Details </a></p></b>
+    <b> <p align = "center" > <a href = "EmpController.php?act=addEmployeeView"> Return to the Create Page </a></p></b>
+     <b> <p align = "center" > <a href = "EmpController.php?act=listSalary"> Salary Details </a></p></b>
     <h1 align = "center">Employee Details </h1>
     </table>
     </body>
    
-?>

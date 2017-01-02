@@ -17,7 +17,8 @@
 </style>
 </head>
 <body bgcolor = #DEE2A3>
-<form method = "post" action= "">
+<form method = "post" action= "EmpController.php?act=updateEmp">
+<input type="hidden" name="id" value="<?php echo $id ?>" />
 <table>
 <b><a href = "index.php">Go to the Index Page </a></b>
 <h1 align = "center" border-style ="solid"> Employee CRUD Application </h1>

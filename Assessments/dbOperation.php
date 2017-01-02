@@ -43,15 +43,16 @@ class DBOperations
     {
         $read_query = "SELECT * from employee_detail e LEFT OUTER JOIN salary_details el on e.id = el.id where e.id = {$id}";
         $result = $this->conn->query($read_query);
-        $employee_detail = $result->fetch_assoc();
-        return $employee_detail;
+        $employee_details = $result->fetch_assoc();
+        return $employee_details;
     }
 
     public function ReadRecordByRow($id)
     {
         $read_query = "SELECT * from employee_detail e LEFT OUTER JOIN salary_details el on e.id = el.id where e.id = {$id}";
         $result_read = $this->conn->query($read_query);
-        return $result_read;
+        $salary_details = $result_read->fetch_assoc();
+        return $salary_details;
     }
 
     public function ListEmployee()
@@ -113,8 +114,9 @@ class DBOperations
             return false;
     }
 
-    public function update($id)
+    public function update($POST)
     {
+        $_POST = $POST;
         $empName = $_POST['empName'];
         $empId = $_POST['empId'];
         $designation = $_POST['designation'];
@@ -123,26 +125,31 @@ class DBOperations
         $grossSalary = $_POST['gross_salary'];
         $deduction = $_POST['deduction'];
         $lop = $_POST['lop'];
+        $id = $_POST['id'];
         $errorMessage = "";
         $calculation = new calculate();
         $netSalary = $calculation->calculation($_POST);
         $result_query = "UPDATE  employee_detail SET empName = '$empName', empId = $empId, designation = '$designation',gender = '$gender',experience = $experience,gross_salary = $grossSalary,deduction = $deduction,lop = $lop,netsal = $netSalary WHERE id = $id";
         $result = $this->conn->query($result_query);
-        if ($result) {
+       // print($result_query);exit;
+        if ($result_query) {
             return true;
         } 
             return false;
     }
 
-    public function update_salary($id)
-    {
+    public function update_salary($POST)
+    {   $_POST = $POST;
         $salary = $_POST['salary'];
         $day = $_POST['day'];
         $month = $_POST['month'];
         $year = $_POST['year'];
+        $id = $_POST['id'];
         $errorMessage = "";
         $update_query = "UPDATE  salary_details SET salary = $salary, day = $day, month = $month, year= $year WHERE id = $id";
+        echo $update_query;
         $result = $this->conn->query($update_query);
+        //var_dump($result);
         if ($result) {
             return true;
         } 

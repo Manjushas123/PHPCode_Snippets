@@ -2,6 +2,7 @@
 <head> 
 <title> View Page </title>
 </head>
+<a href = "EmpController.php?act=listEmployee"> Back </a>
 <h3> Employee Details </h3>
 <table border =5px>
 <p align =center>

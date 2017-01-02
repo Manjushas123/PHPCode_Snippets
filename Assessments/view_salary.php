@@ -20,7 +20,7 @@
 <form method = "post" action= "EmpController.php?act=addSalary">
 <input type="hidden" name="id" value="<?php echo $id ?>" />
 <table>
-<b><a href = "index.php">Go to the Index Page </a></b>
+<b><a href = "EmpController.php?act=listEmployee">Go to the Index Page </a></b>
 <h1 align = "center" border-style ="solid"> Employee CRUD Application </h1>
 <tr> <th> Employee Name </th> <td> <input id = "text" name = "empName"  value="<?php
 echo $empName;

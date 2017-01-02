@@ -21,15 +21,12 @@
        <td>
         
 <a href="EmpController.php?act=delete&id=<?php echo $salary_details['id'] ?>">Delete </a>
-<a href="edit_salary_records.php?id=<?php
-        echo $salary_details['id'];
-?>">Edit</a>
-        </td>      
+<a href="EmpController.php?act=updateSalaryView&id=<?php echo $salary_details['id'] ?>">Edit </a>
+</td>      
 <?php
-        echo "<tr/>";
     }
 ?>
-   <b> <p align = "center" > <a href = "index.php"> Back </a></p></b>
+   <b> <p align = "center" > <a href = "EmpController.php?act=listEmployee"> Back </a></p></b>
     <h1 align = "center">Employee Salary</h1>
     </table>
     </body>
