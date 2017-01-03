@@ -28,7 +28,7 @@ class EmpController
         require 'view_employee.php';
     }
     
-    public function addemp()
+    public function addEmployee()
     {
         $resp = $this->validationObj->validation($_POST);
         if (!$resp['status']) {
@@ -125,7 +125,6 @@ class EmpController
             header('Location:EmpController.php?act=updateEmpView');
         } else {
             unset($_SESSION['errorMsg']);
-            
             $resp = $this->modelObj->update($_POST);
             var_dump($resp);
             if ($resp) {
@@ -160,7 +159,6 @@ class EmpController
         $resp = $this->validationObj->validation_salary($_POST);
         
         if (!$resp['status']) {
-            echo "hiii";
             $_SESSION['errorMsg'] = $resp['message'];
             header('Location:EmpController.php?act=updateSalaryView');
         } else {

@@ -17,7 +17,7 @@
 </style>
 </head>
 <body bgcolor = #DEE2A3>
-<form method = "post" action= "EmpController.php?act=addemp">
+<form method = "post" action= "EmpController.php?act=addEmployee">
 <table>
 <b><a href = "EmpController.php?act=listEmployee">Go to the Index Page </a></b>
 <h1 align = "center" border-style ="solid"> Employee CRUD Application </h1>
