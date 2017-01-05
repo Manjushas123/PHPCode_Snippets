@@ -97,6 +97,7 @@ class DBOperations
         } 
             return false;
     }
+    
     public function createSalaryRecord($data)
     {   $id = $_GET['id']; 
         $id = $data['id'];
